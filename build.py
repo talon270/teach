@@ -13,6 +13,11 @@ def title_of(path, default):
     except OSError:
         return default
 
+def write_keep(path, text):
+    st = os.stat(path)
+    open(path, 'w', encoding='utf8').write(text)
+    os.utime(path, (st.st_atime, st.st_mtime))
+
 courses = sorted(d for d in os.listdir('.') if os.path.isfile(os.path.join(d, 'index.html')))
 
 # 1. rewrite links to the notes folder (they point outside the repo in the source tree)
@@ -22,7 +27,7 @@ for c in courses:
         s = open(f, encoding='utf8').read()
         n = NOTES_RE.sub('../' * depth + 'notes/', s)
         if n != s:
-            open(f, 'w', encoding='utf8').write(n)
+            write_keep(f, n)
 
 # 2. gather items
 def mtime(p): return os.path.getmtime(p)
@@ -129,3 +134,56 @@ print('pages:', total, '| broken links by type:', {k: len(v) for k, v in bad.ite
 for k, v in bad.items():
     if k not in ('.pdf', '.docx', '.pptx', '.ppt', '.doc', '.xlsx'):
         for f, m in v[:15]: print('  UNEXPECTED', f, '->', m)
+
+
+# 5. dark theme: injected into every published page that is light (the source files stay untouched)
+THEME_CSS = """
+html[data-theme="dark"]{color-scheme:dark;--bg:#16120e;--surface:#211c16;--surface-2:#1a1611;--ink:#eadfc6;--muted:#b1a58d;
+--accent:#ff6a55;--accent-ink:#16120e;--accent-soft:#4a2b23;--term:#0a0907;--term-ink:#eadfc6;--sh:5px 5px 0 #000;--sh-sm:3px 3px 0 #000}
+html[data-theme="dark"] :is(.chip.dark,th,.opt.right){color:#16120e}
+html[data-theme="dark"] body{background:var(--bg);color:var(--ink)}
+html[data-theme="dark"] ::selection{background:#ff6a55;color:#16120e}
+#teach-theme-btn{position:fixed;right:12px;bottom:12px;z-index:99999;font:600 13px/1 system-ui,sans-serif;padding:9px 13px;
+border-radius:999px;border:2px solid #111;background:#fff;color:#111;cursor:pointer;box-shadow:2px 2px 0 #111;opacity:.9}
+#teach-theme-btn:hover,#teach-theme-btn:focus-visible{opacity:1;outline:2px solid #e23a28;outline-offset:2px}
+html[data-theme="dark"] #teach-theme-btn{background:#eadfc6;color:#16120e;border-color:#000;box-shadow:2px 2px 0 #000}
+@media print{#teach-theme-btn{display:none}}
+"""
+def theme_js(mode):
+    return ("(function(){var d=document.documentElement,K='teach-theme',t=null;"
+            "try{t=localStorage.getItem(K)}catch(e){}"
+            "if(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)t='dark';"
+            f"d.setAttribute('data-tmode','{mode}');if(t==='dark')d.setAttribute('data-theme','dark');"
+            "document.addEventListener('DOMContentLoaded',function(){var b=document.createElement('button');b.id='teach-theme-btn';b.type='button';"
+            "function lab(){var dk=d.getAttribute('data-theme')==='dark';b.textContent=dk?'Light mode':'Dark mode';b.setAttribute('aria-pressed',dk)}"
+            "b.onclick=function(){var dk=d.getAttribute('data-theme')==='dark';if(dk)d.removeAttribute('data-theme');else d.setAttribute('data-theme','dark');"
+            "try{localStorage.setItem(K,dk?'light':'dark')}catch(e){}lab()};lab();document.body.appendChild(b)})})();")
+MARK = re.compile(r'<!--teach-theme-->.*?<!--/teach-theme-->', re.S)
+
+def lum(hexs):
+    h = hexs.lstrip('#')
+    if len(h) == 3: h = ''.join(ch * 2 for ch in h)
+    r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
+    return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255
+
+def classify(src):
+    """tokens = pages on the shared cream token set; skip = anything else (own theme, own dark look, other palette)."""
+    if re.search(r'data-theme|prefers-color-scheme|color-scheme:\s*dark', src):
+        return 'skip'
+    if re.search(r'--bg:\s*#f8efd9', src, re.I) or 'assets/lesson.css' in src:
+        return 'tokens'
+    return 'skip'
+
+counts = {'tokens': 0, 'skip': 0}
+for f in glob.glob('**/*.html', recursive=True):
+    src = MARK.sub('', open(f, encoding='utf8').read())
+    mode = classify(src)
+    counts[mode] += 1
+    if mode == 'skip':
+        out = src
+    else:
+        block = f'<!--teach-theme--><style>{THEME_CSS}</style><script>{theme_js(mode)}</script><!--/teach-theme-->'
+        out = src.replace('</head>', block + '</head>', 1) if '</head>' in src else block + src
+    if out != open(f, encoding='utf8').read():
+        write_keep(f, out)
+print('dark mode:', counts)
