@@ -1,21 +1,33 @@
 #!/usr/bin/env bash
-# Copy INT301 pages from the study folder into this repo, fix links, commit, push.
+# Mirror all course pages from the study folder into this repo, rebuild the landing page, commit, push.
 set -euo pipefail
 S="/home/talon/SyncedWork/soomaries/study"
-SRC="$S/Monsoon 2026 - 1/teach/INT301"
-NOTES="$S/Notes/Monsoon 2026 - 1/INT301"
+SEM="Monsoon 2026 - 1"
+TEACH="$S/$SEM/teach"
+NOTES="$S/Notes/$SEM"
 R="$(cd "$(dirname "$0")" && pwd)"
-cd "$R"
-rsync -a --delete "$SRC/lessons/" lessons/
-rsync -a --delete "$SRC/assets/" assets/
-cp "$SRC/index.html" index.html
-rsync -a --delete --exclude '*.backup-*' --exclude '*.sync-conflict-*' --include '*.html' --exclude '*' "$NOTES/" notes/
-# fix links: notes live in notes/, the hub page is not published
-sed -i 's#\.\./\.\./\.\./\.\./Notes/Monsoon%202026%20-%201/INT301/#../notes/#g' lessons/*.html index.html
-sed -i 's#href="\.\./index\.html"#href="index.html"#g' index.html
+cd "$R"; mkdir -p notes
+# only web files; no PDFs, docs, md, backups or sync conflicts
+FILT=(--prune-empty-dirs --exclude '*.backup-*' --exclude '*.sync-conflict-*'
+  --include '*/' --include '*.html' --include '*.css' --include '*.js'
+  --include '*.png' --include '*.jpg' --include '*.jpeg' --include '*.svg' --include '*.webp' --include '*.woff2'
+  --exclude '*')
+for d in "$TEACH"/*/; do
+  c="$(basename "$d")"
+  [ -f "$d/index.html" ] || continue
+  rsync -a --delete "${FILT[@]}" "$d" "$c/"
+  if [ -d "$NOTES/$c" ]; then rsync -a --delete "${FILT[@]}" "$NOTES/$c/" "notes/$c/"; else rm -rf "notes/$c"; fi
+done
+# remove course folders that no longer exist in the source
+for d in */; do
+  c="${d%/}"; [ "$c" = notes ] && continue; [ -f "$d/index.html" ] || continue
+  [ -d "$TEACH/$c" ] || rm -rf "$c" "notes/$c"
+done
+cp -p "$TEACH/index.html" plan.html
+python3 -I build.py
 touch .nojekyll
 git add -A
 if git diff --cached --quiet; then echo "Nothing to publish."; exit 0; fi
-git commit -q -m "Update INT301 pages $(date +%F-%H%M)"
-git push -q origin main
-echo "Pushed. Live in about a minute."
+git commit -q -m "Update teach pages $(date +%F-%H%M)"
+git push -q origin HEAD:main
+echo "Pushed. Live in about a minute: https://talon270.github.io/teach/"
