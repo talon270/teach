@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DOM207 End-term formula sheet</title>
+<style>
+/* Print sheet: two A4 sheets, both sides = four pages. Black on white, system fonts only (no network). */
+@page { size: A4; margin: 8mm 8mm 8mm 8mm; }
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: #e9e7e2; color: #000; font: 400 8.6pt/1.32 "DejaVu Serif", "Cambria", "Times New Roman", serif; }
+code, .m { font-family: "DejaVu Sans Mono", "Consolas", monospace; font-size: 7.2pt; }
+.side {
+  width: 210mm; height: 297mm; margin: 12px auto; padding: 8mm; background: #fff;
+  box-shadow: 0 1px 6px rgba(0,0,0,.18); overflow: hidden;
+  break-after: page; page-break-after: always;
+  display: flex; flex-direction: column;
+}
+.side:last-of-type { break-after: auto; page-break-after: auto; }
+.top { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1.2pt solid #000; padding-bottom: 1.5mm; margin-bottom: 2mm; font: 700 9pt "DejaVu Sans", Arial, sans-serif; }
+.top .name { font-weight: 400; }
+.cols { column-count: 2; column-gap: 5mm; column-rule: 0.5pt solid #999; column-fill: auto; flex: 1; min-height: 0; }
+.box { margin: 0 0 2.2mm; }
+p { break-inside: avoid; }
+h2 { font: 700 8.4pt/1.2 "DejaVu Sans", Arial, sans-serif; text-transform: uppercase; letter-spacing: .03em; margin: 0 0 .8mm; padding: .4mm 1mm; background: #000; color: #fff; break-after: avoid; }
+p { margin: 0 0 .9mm; }
+.fn p, p.fn { margin: 0 0 .5mm; }
+sub, sup { font-size: 70%; line-height: 0; }
+.sep { font-weight: 700; padding: 0 .1em; }
+code { overflow-wrap: anywhere; }
+.fr { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 .15em; }
+.fr > span { padding: 0 .15em; line-height: 1.15; }
+.fr > span:first-child { border-bottom: .6pt solid #000; }
+.big { font-size: 115%; }
+.row { display: flex; flex-wrap: wrap; gap: 0 4mm; }
+.screen { max-width: 210mm; margin: 16px auto 0; padding: 10px 14px; background: #fff; border: 1px solid #999; font: 400 13px/1.5 "DejaVu Sans", Arial, sans-serif; }
+.screen p { margin: 0 0 6px; }
+@media print {
+  body { background: #fff; }
+  .side { margin: 0; padding: 0; width: auto; height: 280mm; box-shadow: none; }
+  .screen { display: none; }
+}
+@media screen and (max-width: 820px) {
+  .side { width: auto; height: auto; margin: 8px; overflow: visible; }
+  .cols { column-count: 1; }
+}
+</style>
+</head>
+<body>
+
+<div class="screen">
+<p><strong>Print:</strong> A4, scale 100%, two-sided, two sheets (four pages). Write your name on each sheet by hand. This box does not print.</p>
+<p>Only formulas, function names with arguments, short language structures and library names are on the sheet, as the end-term rules allow. No definitions, symbol keys, diagrams, assumptions or code snippets.</p>
+<p>AI-generated study aid for private revision only. Not for submission as your own work. The DOM207 syllabus states no AI rule: check with the instructor. Check every line against the slides before you print.</p>
+</div>
+
+<!-- ================= SIDE 1 ================= -->
+<section class="side">
+<div class="top"><span>DOM207 · Sheet 1 · Side 1</span><span class="name">Name: ______________________ &nbsp; Roll no.: ____________</span></div>
+<div class="cols">
+
+<div class="box"><h2>Descriptive</h2>
+<p>x̄ = <span class="fr"><span>1</span><span>n</span></span> Σ<sub>i=1</sub><sup>n</sup> x<sub>i</sub> &nbsp;&nbsp; x̄<sub>g</sub> = (Π<sub>i=1</sub><sup>n</sup> x<sub>i</sub>)<sup>1/n</sup> &nbsp;&nbsp; x̄<sub>h</sub> = <span class="fr"><span>n</span><span>Σ 1/x<sub>i</sub></span></span></p>
+<p>s<sup>2</sup> = <span class="fr"><span>1</span><span>n − 1</span></span> Σ(x<sub>i</sub> − x̄)<sup>2</sup> &nbsp;&nbsp; s = √s<sup>2</sup> &nbsp;&nbsp; σ<sup>2</sup> = <span class="fr"><span>1</span><span>N</span></span> Σ(x<sub>i</sub> − μ)<sup>2</sup> = <span class="fr"><span>1</span><span>N</span></span>Σx<sub>i</sub><sup>2</sup> − μ<sup>2</sup></p>
+<p>CV = s / x̄ &nbsp;&nbsp; IQR = Q<sub>3</sub> − Q<sub>1</sub> &nbsp;&nbsp; fences: Q<sub>1</sub> − 1.5·IQR, Q<sub>3</sub> + 1.5·IQR</p>
+<p>z = <span class="fr"><span>x − μ</span><span>σ</span></span> &nbsp;&nbsp; SE<sub>x̄</sub> = <span class="fr"><span>σ</span><span>√n</span></span> ≈ <span class="fr"><span>s</span><span>√n</span></span></p>
+<p>cov(x, y) = <span class="fr"><span>Σ(x<sub>i</sub> − x̄)(y<sub>i</sub> − ȳ)</span><span>n − 1</span></span> &nbsp;&nbsp; r = <span class="fr"><span>Σ(x<sub>i</sub> − x̄)(y<sub>i</sub> − ȳ)</span><span>√(Σ(x<sub>i</sub> − x̄)<sup>2</sup> · Σ(y<sub>i</sub> − ȳ)<sup>2</sup>)</span></span> &nbsp; −1 ≤ r ≤ 1</p>
+<p>K = 0 · K &gt; 0 · K &lt; 0 &nbsp;&nbsp; normal: kurtosis 3, excess 0</p>
+</div>
+
+<div class="box fn"><h2>Descriptive · functions</h2>
+<p><code>mean(x) <span class="sep">·</span> median(x) <span class="sep">·</span> var(x) <span class="sep">·</span> sd(x) <span class="sep">·</span> quantile(x, probs = c(.25, .75)) <span class="sep">·</span> IQR(x) <span class="sep">·</span> range(x) <span class="sep">·</span> summary(df) <span class="sep">·</span> str(df) <span class="sep">·</span> head(df, n = 6) <span class="sep">·</span> table(x) <span class="sep">·</span> cor(x, y, method = "pearson") <span class="sep">·</span> cor.test(x, y) <span class="sep">·</span> boxplot(x) <span class="sep">·</span> hist(x)</code></p>
+<p><code>read.csv(fl, header = TRUE) <span class="sep">·</span> read.table(file = fl, header = TRUE, sep = ",") <span class="sep">·</span> readxl::read_excel(fl, sheet = 1)</code></p>
+<p><code>pd.read_csv(fl) <span class="sep">·</span> pd.read_excel(fl, sheet_name=0) <span class="sep">·</span> df.head() <span class="sep">·</span> df.info() <span class="sep">·</span> df.describe() <span class="sep">·</span> df.mean() <span class="sep">·</span> df.std() <span class="sep">·</span> df.corr() <span class="sep">·</span> np.std(x, ddof=1) <span class="sep">·</span> np.percentile(x, 75) <span class="sep">·</span> stats.skew(x) <span class="sep">·</span> stats.kurtosis(x) <span class="sep">·</span> df['c'].value_counts()</code></p>
+</div>
+
+<div class="box"><h2>Probability</h2>
+<p>P = <span class="fr"><span>n</span><span>N</span></span> &nbsp;&nbsp; P(A) + P(A<sup>c</sup>) = 1 &nbsp;&nbsp; Σ p(x) = 1 &nbsp;&nbsp; 0 ≤ p(x) ≤ 1</p>
+<p>P(A ∪ B) = P(A) + P(B) − P(A ∩ B) &nbsp;&nbsp; P(A ∩ B) = P(A)·P(B)</p>
+<p>P(A | B) = <span class="fr"><span>P(A ∩ B)</span><span>P(B)</span></span> &nbsp;&nbsp; P(A | B) = <span class="fr"><span>P(B | A) P(A)</span><span>P(B)</span></span></p>
+<p>n! = n(n − 1)(n − 2)···2·1 &nbsp;&nbsp; 0! = 1 &nbsp;&nbsp; <sup>n</sup>C<sub>x</sub> = <span class="fr"><span>n!</span><span>x!(n − x)!</span></span></p>
+</div>
+
+<div class="box"><h2>Binomial · Poisson</h2>
+<p>p(x) = <span class="fr"><span>n!</span><span>x!(n − x)!</span></span> p<sup>x</sup>(1 − p)<sup>n − x</sup> &nbsp;&nbsp; μ = np &nbsp; σ<sup>2</sup> = np(1 − p) &nbsp; σ = √(np(1 − p))</p>
+<p>p(x) = <span class="fr"><span>e<sup>−λ</sup> λ<sup>x</sup></span><span>x!</span></span> &nbsp;&nbsp; μ = λ &nbsp; σ<sup>2</sup> = λ &nbsp; σ = √λ &nbsp;&nbsp; n → ∞, p → 0: λ = np</p>
+<p class="fn"><code>dbinom(x, size, prob) <span class="sep">·</span> pbinom(q, size, prob) <span class="sep">·</span> dpois(x, lambda) <span class="sep">·</span> ppois(q, lambda)</code></p>
+<p class="fn"><code>stats.binom.pmf(k, n, p) <span class="sep">·</span> stats.binom.cdf(k, n, p) <span class="sep">·</span> stats.poisson.pmf(k, mu) <span class="sep">·</span> stats.poisson.cdf(k, mu)</code></p>
+</div>
+
+<div class="box"><h2>Normal · CLT</h2>
+<p>p(x) = <span class="fr"><span>1</span><span>σ√(2π)</span></span> e<sup>−(x − μ)²/(2σ²)</sup> &nbsp;&nbsp; X ~ N(μ, σ<sup>2</sup>)</p>
+<p>p(z) = <span class="fr"><span>1</span><span>√(2π)</span></span> e<sup>−z²/2</sup> &nbsp;&nbsp; Z = <span class="fr"><span>X − μ</span><span>σ</span></span> ~ N(0, 1)</p>
+<p>±1σ: 68.3% &nbsp; ±2σ: 95.4% &nbsp; ±3σ: 99.7%</p>
+<p>z<sub>0.90</sub> = 1.645 &nbsp; z<sub>0.95</sub> = 1.96 &nbsp; z<sub>0.99</sub> = 2.576 &nbsp; (two-sided) &nbsp;&nbsp; one-sided 5%: 1.645</p>
+<p>Z = <span class="fr"><span>Σ<sub>i=1</sub><sup>n</sup> X<sub>i</sub></span><span>n</span></span> &nbsp; mean <span class="fr"><span>Σ μ<sub>i</sub></span><span>n</span></span> &nbsp; var <span class="fr"><span>Σ σ<sub>i</sub><sup>2</sup></span><span>n<sup>2</sup></span></span> &nbsp;&nbsp; x̄ ~ N(μ, σ<sup>2</sup>/n), n ≥ 30</p>
+<p class="fn"><code>dnorm(x, mean, sd) <span class="sep">·</span> pnorm(q, mean = 0, sd = 1, lower.tail = TRUE) <span class="sep">·</span> qnorm(p) <span class="sep">·</span> rnorm(n, mean, sd) <span class="sep">·</span> pt(q, df) <span class="sep">·</span> qt(p, df) <span class="sep">·</span> pchisq(q, df) <span class="sep">·</span> pf(q, df1, df2)</code></p>
+<p class="fn"><code>stats.norm.pdf(x, loc, scale) <span class="sep">·</span> stats.norm.cdf(x) <span class="sep">·</span> stats.norm.ppf(q) <span class="sep">·</span> stats.t.ppf(q, df) <span class="sep">·</span> stats.t.cdf(x, df) <span class="sep">·</span> np.random.randn(n) <span class="sep">·</span> np.random.seed(s)</code></p>
+</div>
+
+<div class="box"><h2>Confidence interval · tests</h2>
+<p>x̄ ± z<sup>*</sup> <span class="fr"><span>σ</span><span>√n</span></span> &nbsp;&nbsp; x̄ ± t<sup>*</sup><sub>n−1</sub> <span class="fr"><span>s</span><span>√n</span></span> &nbsp;&nbsp; ME = z<sup>*</sup>·SE</p>
+<p>SE<sub>p̂</sub> = √<span class="fr"><span>p(1 − p)</span><span>n</span></span> &nbsp;&nbsp; p̂ ± z<sup>*</sup> · SE &nbsp;&nbsp; np ≥ 10, n(1 − p) ≥ 10</p>
+<p>z = <span class="fr"><span>p̂ − p<sub>0</sub></span><span>√(p<sub>0</sub>(1 − p<sub>0</sub>)/n)</span></span> &nbsp;&nbsp; z = <span class="fr"><span>x̄ − μ<sub>0</sub></span><span>σ/√n</span></span></p>
+<p>H<sub>0</sub>: μ<sub>1</sub> − μ<sub>2</sub> = 0 &nbsp; H<sub>1</sub>: μ<sub>1</sub> ≠ μ<sub>2</sub> · μ<sub>1</sub> &gt; μ<sub>2</sub> · μ<sub>1</sub> &lt; μ<sub>2</sub></p>
+<p>p &lt; α ⇒ reject H<sub>0</sub> &nbsp;&nbsp; |t| &gt; t<sub>crit</sub> ⇒ reject H<sub>0</sub> &nbsp;&nbsp; CL = 1 − α</p>
+<p>P(Type I) = α &nbsp;&nbsp; P(Type II) = β &nbsp;&nbsp; power = 1 − β</p>
+</div>
+
+</div>
+</section>
+
+<!-- ================= SIDE 2 ================= -->
+<section class="side">
+<div class="top"><span>DOM207 · Sheet 1 · Side 2</span><span class="name">Name: ______________________</span></div>
+<div class="cols">
+
+<div class="box"><h2>t-tests · F-test</h2>
+<p>One-sample: t = <span class="fr"><span>x̄ − μ</span><span>s / √n</span></span> &nbsp;&nbsp; df = n − 1</p>
+<p>Paired: d<sub>i</sub> = x<sub>i</sub> − y<sub>i</sub> &nbsp; t = <span class="fr"><span>d̄</span><span>s<sub>d</sub> / √n</span></span> &nbsp;&nbsp; df = n − 1</p>
+<p>Pooled: s<sup>2</sup> = <span class="fr"><span>(n<sub>x</sub> − 1)s<sub>x</sub><sup>2</sup> + (n<sub>y</sub> − 1)s<sub>y</sub><sup>2</sup></span><span>n<sub>x</sub> + n<sub>y</sub> − 2</span></span></p>
+<p>t = <span class="fr"><span>(x̄ − ȳ) − (μ<sub>x</sub> − μ<sub>y</sub>)</span><span>s √(1/n<sub>x</sub> + 1/n<sub>y</sub>)</span></span> &nbsp;&nbsp; df = n<sub>x</sub> + n<sub>y</sub> − 2</p>
+<p>Welch: t = <span class="fr"><span>x̄ − ȳ</span><span>√(s<sub>x</sub><sup>2</sup>/n<sub>x</sub> + s<sub>y</sub><sup>2</sup>/n<sub>y</sub>)</span></span> &nbsp;&nbsp; ν = <span class="fr"><span>(s<sub>x</sub><sup>2</sup>/n<sub>x</sub> + s<sub>y</sub><sup>2</sup>/n<sub>y</sub>)<sup>2</sup></span><span><span class="fr"><span>(s<sub>x</sub><sup>2</sup>/n<sub>x</sub>)<sup>2</sup></span><span>n<sub>x</sub> − 1</span></span> + <span class="fr"><span>(s<sub>y</sub><sup>2</sup>/n<sub>y</sub>)<sup>2</sup></span><span>n<sub>y</sub> − 1</span></span></span></span></p>
+<p>F = <span class="fr"><span>s<sub>1</sub><sup>2</sup></span><span>s<sub>2</sub><sup>2</sup></span></span> &nbsp;&nbsp; df = (n<sub>1</sub> − 1, n<sub>2</sub> − 1)</p>
+<p class="fn"><code>t.test(x, mu = 0, alternative = "two.sided", conf.level = 0.95) <span class="sep">·</span> t.test(x, y, paired = TRUE) <span class="sep">·</span> t.test(x, y, var.equal = TRUE) <span class="sep">·</span> t.test(y ~ g, data = d, var.equal = FALSE) <span class="sep">·</span> var.test(x, y) <span class="sep">·</span> shapiro.test(x) <span class="sep">·</span> car::leveneTest(y ~ g, data = d) <span class="sep">·</span> fligner.test(y ~ g, data = d) <span class="sep">·</span> qqnorm(x) <span class="sep">·</span> qqline(x)</code></p>
+<p class="fn"><code>from scipy import stats <span class="sep">·</span> stats.ttest_1samp(a, popmean) <span class="sep">·</span> stats.ttest_ind(a, b, equal_var=True) <span class="sep">·</span> stats.ttest_rel(a, b) <span class="sep">·</span> stats.shapiro(x) <span class="sep">·</span> stats.levene(a, b) <span class="sep">·</span> stats.bartlett(a, b) <span class="sep">·</span> sm.qqplot(x, line='45')</code></p>
+</div>
+
+<div class="box"><h2>One-way ANOVA</h2>
+<p>SST = Σ<sub>j</sub>Σ<sub>i</sub>(x<sub>ij</sub> − x̿)<sup>2</sup> &nbsp;&nbsp; SSB = Σ<sub>j</sub> n<sub>j</sub>(x̄<sub>j</sub> − x̿)<sup>2</sup> &nbsp;&nbsp; SSW = Σ<sub>j</sub>Σ<sub>i</sub>(x<sub>ij</sub> − x̄<sub>j</sub>)<sup>2</sup></p>
+<p>SST = SSB + SSW &nbsp;&nbsp; MSB = <span class="fr"><span>SSB</span><span>k − 1</span></span> &nbsp; MSW = <span class="fr"><span>SSW</span><span>N − k</span></span> &nbsp;&nbsp; F = <span class="fr"><span>MSB</span><span>MSW</span></span> &nbsp;&nbsp; df = (k − 1, N − k)</p>
+<p>H<sub>0</sub>: μ<sub>1</sub> = μ<sub>2</sub> = … = μ<sub>k</sub></p>
+<p class="fn"><code>aov(y ~ g, data = d) <span class="sep">·</span> summary(aov_m) <span class="sep">·</span> TukeyHSD(aov_m) <span class="sep">·</span> lm(y ~ factor(g), data = d) <span class="sep">·</span> anova(m)</code></p>
+<p class="fn"><code>from statsmodels.formula.api import ols <span class="sep">·</span> ols('DV ~ C(IV)', data=df).fit() <span class="sep">·</span> sm.stats.anova_lm(mdl, typ=1) <span class="sep">·</span> stats.f_oneway(a, b, c) <span class="sep">·</span> pairwise_tukeyhsd(endog, groups)</code></p>
+</div>
+
+<div class="box"><h2>Regression · OLS</h2>
+<p>y<sub>i</sub> = β<sub>0</sub> + β<sub>1</sub>x<sub>1i</sub> + β<sub>2</sub>x<sub>2i</sub> + ⋯ + β<sub>k</sub>x<sub>ki</sub> + ε<sub>i</sub> &nbsp;&nbsp; ŷ<sub>i</sub> = β̂<sub>0</sub> + Σ β̂<sub>j</sub>x<sub>ji</sub> &nbsp;&nbsp; e<sub>i</sub> = y<sub>i</sub> − ŷ<sub>i</sub></p>
+<p>β̂<sub>1</sub> = <span class="fr"><span>Σ(x<sub>i</sub> − x̄)(y<sub>i</sub> − ȳ)</span><span>Σ(x<sub>i</sub> − x̄)<sup>2</sup></span></span> = r <span class="fr"><span>s<sub>y</sub></span><span>s<sub>x</sub></span></span> &nbsp;&nbsp; β̂<sub>0</sub> = ȳ − β̂<sub>1</sub>x̄ &nbsp;&nbsp; β̂ = (X<sup>T</sup>X)<sup>−1</sup>X<sup>T</sup>y</p>
+<p>min Σ e<sub>i</sub><sup>2</sup> &nbsp;&nbsp; y = β<sub>0</sub> + β<sub>1</sub>a + β<sub>2</sub>b + β<sub>3</sub>(a·b) + ε</p>
+<p>SST = Σ(y<sub>i</sub> − ȳ)<sup>2</sup> &nbsp; SSM = Σ(ŷ<sub>i</sub> − ȳ)<sup>2</sup> &nbsp; SSR = Σ(y<sub>i</sub> − ŷ<sub>i</sub>)<sup>2</sup> &nbsp;&nbsp; SST = SSM + SSR</p>
+<p>R<sup>2</sup> = <span class="fr"><span>SSM</span><span>SST</span></span> = 1 − <span class="fr"><span>SSR</span><span>SST</span></span> &nbsp;&nbsp; R<sup>2</sup><sub>adj</sub> = 1 − <span class="fr"><span>(n − 1)(1 − R<sup>2</sup>)</span><span>n − k − 1</span></span> &nbsp;&nbsp; R<sup>2</sup><sub>adj</sub> ≤ R<sup>2</sup> &nbsp;&nbsp; SLR: R<sup>2</sup> = r<sup>2</sup></p>
+<p>F = <span class="fr"><span>SSM / k</span><span>SSR / (n − k − 1)</span></span> &nbsp; df = (k, n − k − 1) &nbsp;&nbsp; H<sub>0</sub>: β<sub>1</sub> = ⋯ = β<sub>k</sub> = 0</p>
+<p>t<sub>j</sub> = <span class="fr"><span>β̂<sub>j</sub></span><span>SE(β̂<sub>j</sub>)</span></span> &nbsp; df = n − k − 1 &nbsp;&nbsp; H<sub>0</sub>: β<sub>j</sub> = 0 &nbsp;&nbsp; β̂<sub>j</sub> ± t<sup>*</sup>·SE(β̂<sub>j</sub>) &nbsp;&nbsp; coefplot: ±1 SE, ±2 SE</p>
+<p>MSE = <span class="fr"><span>1</span><span>n</span></span> Σ(y<sub>i</sub> − ŷ<sub>i</sub>)<sup>2</sup> &nbsp;&nbsp; RMSE = √MSE &nbsp;&nbsp; s<sub>e</sub> = √(SSR / (n − k − 1)) &nbsp;&nbsp; MAE = <span class="fr"><span>1</span><span>n</span></span>Σ|y<sub>i</sub> − ŷ<sub>i</sub>|</p>
+</div>
+
+<div class="box"><h2>Regression · diagnostics</h2>
+<p>VIF<sub>j</sub> = <span class="fr"><span>1</span><span>1 − R<sub>j</sub><sup>2</sup></span></span> &nbsp;&nbsp; tolerance = 1 − R<sub>j</sub><sup>2</sup> &nbsp;&nbsp; 1 · 1–5 · &gt; 5 · &gt; 10</p>
+<p>DW = <span class="fr"><span>Σ<sub>t=2</sub><sup>n</sup>(e<sub>t</sub> − e<sub>t−1</sub>)<sup>2</sup></span><span>Σ<sub>t=1</sub><sup>n</sup> e<sub>t</sub><sup>2</sup></span></span> ≈ 2(1 − r<sub>1</sub>) &nbsp;&nbsp; 0 ≤ DW ≤ 4 &nbsp;&nbsp; DW ≈ 2</p>
+<p>D<sub>i</sub> = <span class="fr"><span>Σ<sub>j</sub>(ŷ<sub>j</sub> − ŷ<sub>j(i)</sub>)<sup>2</sup></span><span>(k + 1) · MSE</span></span> &nbsp;&nbsp; D<sub>i</sub> &gt; 4/n</p>
+<p>BP: LM = n·R<sup>2</sup><sub>aux</sub> ~ χ<sup>2</sup><sub>k</sub> &nbsp;&nbsp; e<sub>i</sub><sup>2</sup> = γ<sub>0</sub> + γ<sub>1</sub>x<sub>1i</sub> + ⋯ + γ<sub>k</sub>x<sub>ki</sub> + u<sub>i</sub></p>
+</div>
+
+<div class="box fn"><h2>Regression · functions</h2>
+<p><code>lm(y ~ x1 + x2, data = d) <span class="sep">·</span> lm(y ~ a * b, data = d) <span class="sep">·</span> lm(y ~ ., data = d) <span class="sep">·</span> summary(m) <span class="sep">·</span> coef(m) <span class="sep">·</span> confint(m, level = 0.95) <span class="sep">·</span> residuals(m) <span class="sep">·</span> fitted(m) <span class="sep">·</span> predict(m, newdata = nd, interval = "prediction") <span class="sep">·</span> anova(m1, m2) <span class="sep">·</span> step(m, direction = "both") <span class="sep">·</span> coefplot::coefplot(m) <span class="sep">·</span> plot(m) <span class="sep">·</span> car::vif(m) <span class="sep">·</span> lmtest::bptest(m) <span class="sep">·</span> lmtest::dwtest(m) <span class="sep">·</span> olsrr::ols_plot_cooksd_bar(m) <span class="sep">·</span> cooks.distance(m) <span class="sep">·</span> cor(d)</code></p>
+<p><code>import statsmodels.api as sm <span class="sep">·</span> X = sm.add_constant(X) <span class="sep">·</span> sm.OLS(y, X).fit() <span class="sep">·</span> smf.ols('y ~ x1 + x2', data=df).fit() <span class="sep">·</span> m.summary() <span class="sep">·</span> m.params <span class="sep">·</span> m.pvalues <span class="sep">·</span> m.rsquared <span class="sep">·</span> m.rsquared_adj <span class="sep">·</span> m.resid <span class="sep">·</span> m.predict(X) <span class="sep">·</span> m.get_influence().cooks_distance <span class="sep">·</span> variance_inflation_factor(X.values, i) <span class="sep">·</span> het_breuschpagan(m.resid, m.model.exog) <span class="sep">·</span> het_white(m.resid, m.model.exog) <span class="sep">·</span> durbin_watson(m.resid)</code></p>
+<p><code>from sklearn import linear_model <span class="sep">·</span> linear_model.LinearRegression().fit(X, y) <span class="sep">·</span> regr.intercept_ <span class="sep">·</span> regr.coef_ <span class="sep">·</span> regr.score(X, y) <span class="sep">·</span> regr.predict(X) <span class="sep">·</span> mean_squared_error(y, y_pred) <span class="sep">·</span> r2_score(y, y_pred)</code></p>
+</div>
+
+</div>
+</section>
+
+<!-- ================= SIDE 3 ================= -->
+<section class="side">
+<div class="top"><span>DOM207 · Sheet 2 · Side 1</span><span class="name">Name: ______________________ &nbsp; Roll no.: ____________</span></div>
+<div class="cols">
+
+<div class="box"><h2>Logistic · probit (LR)</h2>
+<p>X<sub>i</sub>β = β<sub>0</sub> + Σ<sub>i</sub> β<sub>i</sub>x<sub>i</sub> &nbsp;&nbsp; Pr(y = 1 | x<sub>1</sub>, …, x<sub>k</sub>) = F(β<sub>0</sub> + Σ<sub>i</sub> β<sub>i</sub>x<sub>i</sub>)</p>
+<p>Logit: F(x) = <span class="fr"><span>e<sup>x</sup></span><span>1 + e<sup>x</sup></span></span> = <span class="fr"><span>1</span><span>1 + e<sup>−x</sup></span></span> &nbsp;&nbsp; Probit: F(x) = ∫<sub>−∞</sub><sup>x</sup> φ(z) dz, &nbsp; φ(z) = <span class="fr"><span>1</span><span>√(2π)</span></span> e<sup>−z²/2</sup></p>
+<p>ln<span class="fr"><span>p</span><span>1 − p</span></span> = β<sub>0</sub> + β<sub>1</sub>x<sub>1</sub> + ⋯ + β<sub>k</sub>x<sub>k</sub> &nbsp;&nbsp; p = <span class="fr"><span>1</span><span>1 + e<sup>−(β<sub>0</sub> + Σβ<sub>j</sub>x<sub>j</sub>)</sup></span></span></p>
+<p>y* = xβ + e &nbsp;&nbsp; y = 1 if y* &gt; 0, else 0 &nbsp;&nbsp; ŷ = 1 if p̂ ≥ 0.5</p>
+<p>Odds = <span class="fr"><span>P(event)</span><span>P(no event)</span></span> = <span class="fr"><span>p</span><span>1 − p</span></span> &nbsp;&nbsp; p = <span class="fr"><span>odds</span><span>1 + odds</span></span> &nbsp;&nbsp; OR = <span class="fr"><span>odds<sub>1</sub></span><span>odds<sub>0</sub></span></span> = e<sup>β<sub>j</sub></sup> &nbsp;&nbsp; % Δodds = (e<sup>β<sub>j</sub></sup> − 1) × 100</p>
+<p>Deviance = −2 ln L̂ &nbsp;&nbsp; Dev<sub>old</sub> − Dev<sub>new</sub> ≥ 2 &nbsp;&nbsp; Dev<sub>null</sub> − Dev<sub>res</sub> ~ χ<sup>2</sup><sub>k</sub> &nbsp;&nbsp; AIC = 2k − 2 ln L̂ &nbsp;&nbsp; ΔAIC = AIC<sub>1</sub> − AIC<sub>2</sub> &nbsp;&nbsp; R<sup>2</sup><sub>McF</sub> = 1 − <span class="fr"><span>ln L̂<sub>model</sub></span><span>ln L̂<sub>null</sub></span></span></p>
+<p class="fn"><code>glm(y ~ x1 + x2, data = d, family = binomial(link = "logit")) <span class="sep">·</span> glm(…, family = binomial(link = "probit")) <span class="sep">·</span> glm(…, family = poisson) <span class="sep">·</span> summary(m) <span class="sep">·</span> coefplot(m) <span class="sep">·</span> exp(coef(m)) <span class="sep">·</span> predict(m, newdata = test, type = "response") <span class="sep">·</span> invlogit &lt;- function(x) 1 / (1 + exp(-x)) <span class="sep">·</span> table(actual, predicted)</code></p>
+<p class="fn"><code>from sklearn.linear_model import LogisticRegression <span class="sep">·</span> LogisticRegression(solver='liblinear', random_state=0).fit(x, y) <span class="sep">·</span> m.intercept_ <span class="sep">·</span> m.coef_ <span class="sep">·</span> m.predict_proba(x) <span class="sep">·</span> m.predict(x) <span class="sep">·</span> m.score(x, y) <span class="sep">·</span> confusion_matrix(y, m.predict(x)) <span class="sep">·</span> classification_report(y, m.predict(x)) <span class="sep">·</span> smf.logit('y ~ x1 + x2', data=df).fit()</code></p>
+</div>
+
+<div class="box"><h2>Confusion matrix</h2>
+<p>Accuracy = <span class="fr"><span>TP + TN</span><span>TP + TN + FP + FN</span></span> &nbsp;&nbsp; Precision = <span class="fr"><span>TP</span><span>TP + FP</span></span> &nbsp;&nbsp; Recall = <span class="fr"><span>TP</span><span>TP + FN</span></span></p>
+<p>Specificity = <span class="fr"><span>TN</span><span>TN + FP</span></span> &nbsp;&nbsp; FPR = <span class="fr"><span>FP</span><span>FP + TN</span></span> &nbsp;&nbsp; F1 = <span class="fr"><span>2 · P · R</span><span>P + R</span></span> &nbsp;&nbsp; FP = Type I · FN = Type II</p>
+<p class="fn"><code>metrics.accuracy_score(y_test, y_pred) <span class="sep">·</span> metrics.precision_score(y_test, y_pred) <span class="sep">·</span> metrics.recall_score(y_test, y_pred) <span class="sep">·</span> f1_score(y_test, y_pred)</code></p>
+</div>
+
+<div class="box"><h2>Time series (TSA)</h2>
+<p>Y<sub>t</sub> = T<sub>t</sub> + S<sub>t</sub> + R<sub>t</sub> &nbsp;&nbsp; Y<sub>t</sub> = T<sub>t</sub> × S<sub>t</sub> × R<sub>t</sub> &nbsp;&nbsp; log Y<sub>t</sub> = log T<sub>t</sub> + log S<sub>t</sub> + log R<sub>t</sub> &nbsp;&nbsp; Y<sub>t</sub> − S<sub>t</sub></p>
+<p>SMA<sub>t</sub> = <span class="fr"><span>y<sub>t</sub> + y<sub>t−1</sub> + ⋯ + y<sub>t−n+1</sub></span><span>n</span></span> &nbsp;&nbsp; ŷ<sub>t+1</sub> = αy<sub>t</sub> + (1 − α)ŷ<sub>t</sub></p>
+<p>a<sub>t</sub> = α(Y<sub>t</sub> − s<sub>t−p</sub>) + (1 − α)(a<sub>t−1</sub> + b<sub>t−1</sub>)</p>
+<p>b<sub>t</sub> = β(a<sub>t</sub> − a<sub>t−1</sub>) + (1 − β)b<sub>t−1</sub></p>
+<p>s<sub>t</sub> = γ(Y<sub>t</sub> − a<sub>t</sub>) + (1 − γ)s<sub>t−p</sub> &nbsp;&nbsp; Ŷ<sub>t+h</sub> = a<sub>t</sub> + h·b<sub>t</sub> + s<sub>t−p+1+(h−1) mod p</sub></p>
+<p>×: a<sub>t</sub> = α<span class="fr"><span>Y<sub>t</sub></span><span>s<sub>t−p</sub></span></span> + (1 − α)(a<sub>t−1</sub> + b<sub>t−1</sub>) &nbsp; s<sub>t</sub> = γ<span class="fr"><span>Y<sub>t</sub></span><span>a<sub>t</sub></span></span> + (1 − γ)s<sub>t−p</sub> &nbsp; Ŷ<sub>t+h</sub> = (a<sub>t</sub> + h·b<sub>t</sub>)·s<sub>t−p+1+(h−1) mod p</sub> &nbsp;&nbsp; 0 ≤ α, β, γ ≤ 1</p>
+<p>r<sub>k</sub> = <span class="fr"><span>Σ<sub>t=k+1</sub><sup>n</sup>(y<sub>t</sub> − ȳ)(y<sub>t−k</sub> − ȳ)</span><span>Σ<sub>t=1</sub><sup>n</sup>(y<sub>t</sub> − ȳ)<sup>2</sup></span></span> &nbsp;&nbsp; ±<span class="fr"><span>1.96</span><span>√n</span></span> &nbsp;&nbsp; Q = n(n + 2) Σ<sub>k=1</sub><sup>h</sup> <span class="fr"><span>r<sub>k</sub><sup>2</sup></span><span>n − k</span></span> ~ χ<sup>2</sup><sub>h</sub> &nbsp;&nbsp; p &gt; 0.05</p>
+<p class="fn"><code>ts(v, frequency = 12, start = c(1946, 1)) <span class="sep">·</span> ts(v, frequency = 4, start = c(1986, 2)) <span class="sep">·</span> plot.ts(x) <span class="sep">·</span> log(x) <span class="sep">·</span> as.Date(df$DATE, '%m-%d-%Y') <span class="sep">·</span> TTR::SMA(x, n = 3) <span class="sep">·</span> decompose(x) <span class="sep">·</span> decompose(x, type = "multiplicative") <span class="sep">·</span> comps$seasonal <span class="sep">·</span> comps$trend <span class="sep">·</span> comps$random <span class="sep">·</span> x - comps$seasonal <span class="sep">·</span> HoltWinters(x) <span class="sep">·</span> HoltWinters(x, alpha = 0.2, beta = 0.1, gamma = 0.1) <span class="sep">·</span> HoltWinters(x, beta = FALSE, gamma = FALSE) <span class="sep">·</span> HoltWinters(x, seasonal = "multiplicative") <span class="sep">·</span> HW1$fitted[, 1] <span class="sep">·</span> HW1$SSE <span class="sep">·</span> predict(HW1, 24, prediction.interval = TRUE, level = 0.95) <span class="sep">·</span> forecast::forecast(HW1, h = 24, level = c(80, 95)) <span class="sep">·</span> acf(f$residuals, lag.max = 20, na.action = na.pass) <span class="sep">·</span> pacf(x) <span class="sep">·</span> Box.test(f$residuals, lag = 20, type = "Ljung-Box") <span class="sep">·</span> hist(f$residuals) <span class="sep">·</span> lines(HW1$fitted[, 1], lty = 2, col = "blue")</code></p>
+</div>
+
+<div class="box"><h2>SVM</h2>
+<p>w<sup>T</sup>x + b = 0 &nbsp;&nbsp; ŷ = sign(w<sup>T</sup>x + b) &nbsp;&nbsp; margin = <span class="fr"><span>2</span><span>‖w‖</span></span> &nbsp;&nbsp; min ½‖w‖<sup>2</sup> + C Σξ<sub>i</sub>, &nbsp; y<sub>i</sub>(w<sup>T</sup>x<sub>i</sub> + b) ≥ 1 − ξ<sub>i</sub></p>
+<p>K(x, y) = x<sup>T</sup>y = Σ<sub>i=1</sub><sup>n</sup> x<sub>i</sub>y<sub>i</sub> &nbsp;&nbsp; K(x, y) = (γx<sup>T</sup>y + c)<sup>d</sup> &nbsp;&nbsp; K(x, x<sub>i</sub>) = e<sup>−γ·Σ(x − x<sub>i</sub>)²</sup> &nbsp;&nbsp; z = x<sup>2</sup> + y<sup>2</sup> &nbsp;&nbsp; γ = 0.1</p>
+<p class="fn"><code>from sklearn import svm <span class="sep">·</span> svm.SVC(kernel='linear') <span class="sep">·</span> svm.SVC(kernel='poly', degree=3, C=1.0) <span class="sep">·</span> svm.SVC(kernel='rbf', gamma=0.1, C=1.0) <span class="sep">·</span> clf.fit(X_train, y_train) <span class="sep">·</span> clf.predict(X_test) <span class="sep">·</span> train_test_split(cancer.data, cancer.target, test_size=0.3, random_state=109) <span class="sep">·</span> e1071::svm(y ~ ., data = d, kernel = "radial", cost = 1, gamma = 0.1)</code></p>
+</div>
+<div class="box fn"><h2>R · Python structures</h2>
+<p><code>for (i in 1:n) { } <span class="sep">·</span> while (cond) { } <span class="sep">·</span> repeat { } <span class="sep">·</span> break <span class="sep">·</span> next <span class="sep">·</span> if (a) { } else if (b) { } else { } <span class="sep">·</span> ifelse(cond, a, b) <span class="sep">·</span> f &lt;- function(x, y = 1) { return(x) } <span class="sep">·</span> c() <span class="sep">·</span> list() <span class="sep">·</span> vector("numeric", n) <span class="sep">·</span> matrix(v, nrow = 2, ncol = 3, byrow = TRUE) <span class="sep">·</span> array(v, dim = c(2, 3, 4)) <span class="sep">·</span> data.frame() <span class="sep">·</span> factor() <span class="sep">·</span> seq(1, 10, by = 2) <span class="sep">·</span> rep(x, times = 3) <span class="sep">·</span> length(x) <span class="sep">·</span> apply(m, 1, sum) <span class="sep">·</span> sapply(l, f) <span class="sep">·</span> lapply(l, f) <span class="sep">·</span> class(o) &lt;- "cls" <span class="sep">·</span> setClass("P", representation(name = "character")) <span class="sep">·</span> new("P", name = "A") <span class="sep">·</span> setRefClass("P", fields = list(), methods = list())</code></p>
+<p><code>for i in range(start, stop, step): <span class="sep">·</span> while cond: <span class="sep">·</span> break <span class="sep">·</span> continue <span class="sep">·</span> pass <span class="sep">·</span> if a: … elif b: … else: <span class="sep">·</span> def f(x, y=1): return x <span class="sep">·</span> lambda x: x * 2 <span class="sep">·</span> class C: <span class="sep">·</span> def __init__(self, x): <span class="sep">·</span> [1, 2] <span class="sep">·</span> (1, 2) <span class="sep">·</span> {"k": v} <span class="sep">·</span> {1, 2} <span class="sep">·</span> [x for x in s if c] <span class="sep">·</span> a[start:stop:step] <span class="sep">·</span> try: … except: <span class="sep">·</span> np.array([[1, 2], [3, 4]]) <span class="sep">·</span> np.arange(0, 10, 2) <span class="sep">·</span> np.linspace(0, 1, 5) <span class="sep">·</span> np.zeros((2, 3)) <span class="sep">·</span> np.ones((2, 3)) <span class="sep">·</span> a.reshape(2, 3) <span class="sep">·</span> a.shape <span class="sep">·</span> a.T <span class="sep">·</span> a @ b</code></p>
+<p><code>car <span class="sep">·</span> lmtest <span class="sep">·</span> olsrr <span class="sep">·</span> coefplot <span class="sep">·</span> ggplot2 <span class="sep">·</span> dplyr <span class="sep">·</span> readxl <span class="sep">·</span> TTR <span class="sep">·</span> forecast <span class="sep">·</span> factoextra <span class="sep">·</span> cluster <span class="sep">·</span> class <span class="sep">·</span> e1071 <span class="sep">·</span> tm <span class="sep">·</span> tidytext <span class="sep">·</span> SnowballC <span class="sep">·</span> wordcloud <span class="sep">·</span> neuralnet <span class="sep">·</span> keras</code></p>
+<p><code>numpy <span class="sep">·</span> pandas <span class="sep">·</span> matplotlib.pyplot <span class="sep">·</span> seaborn <span class="sep">·</span> scipy.stats <span class="sep">·</span> scipy.cluster.hierarchy <span class="sep">·</span> statsmodels.api <span class="sep">·</span> statsmodels.formula.api <span class="sep">·</span> sklearn.linear_model <span class="sep">·</span> sklearn.model_selection <span class="sep">·</span> sklearn.metrics <span class="sep">·</span> sklearn.cluster <span class="sep">·</span> sklearn.neighbors <span class="sep">·</span> sklearn.svm <span class="sep">·</span> sklearn.preprocessing <span class="sep">·</span> sklearn.tree <span class="sep">·</span> sklearn.feature_extraction.text <span class="sep">·</span> nltk <span class="sep">·</span> tensorflow <span class="sep">·</span> tensorflow.keras</code></p>
+</div>
+</div>
+</section>
+
+<!-- ================= SIDE 4 ================= -->
+<section class="side">
+<div class="top"><span>DOM207 · Sheet 2 · Side 2</span><span class="name">Name: ______________________</span></div>
+<div class="cols">
+
+<div class="box"><h2>Distance · clustering (HCA) · KNN</h2>
+<p>d(P, Q) = √((x<sub>2</sub> − x<sub>1</sub>)<sup>2</sup> + (y<sub>2</sub> − y<sub>1</sub>)<sup>2</sup>) &nbsp;&nbsp; d(x, y) = √Σ<sub>i</sub>(x<sub>i</sub> − y<sub>i</sub>)<sup>2</sup></p>
+<p>d(P, Q) = |x<sub>1</sub> − x<sub>2</sub>| + |y<sub>1</sub> − y<sub>2</sub>| &nbsp;&nbsp; d<sub>p</sub> = (Σ|x<sub>i</sub> − y<sub>i</sub>|<sup>p</sup>)<sup>1/p</sup> &nbsp;&nbsp; d<sub>H</sub> = Σ<sub>i</sub> [x<sub>i</sub> ≠ y<sub>i</sub>]</p>
+<p>z = <span class="fr"><span>x − x̄</span><span>s</span></span> &nbsp;&nbsp; x' = <span class="fr"><span>x − min</span><span>max − min</span></span></p>
+<p>single: min d(a, b) &nbsp; complete: max d(a, b) &nbsp; average: <span class="fr"><span>1</span><span>n<sub>A</sub>n<sub>B</sub></span></span>ΣΣ d(a, b) &nbsp; centroid: d(x̄<sub>A</sub>, x̄<sub>B</sub>) &nbsp; Ward: <span class="fr"><span>n<sub>A</sub>n<sub>B</sub></span><span>n<sub>A</sub> + n<sub>B</sub></span></span>‖x̄<sub>A</sub> − x̄<sub>B</sub>‖<sup>2</sup></p>
+<p>μ<sub>k</sub> = <span class="fr"><span>1</span><span>|C<sub>k</sub>|</span></span> Σ<sub>x∈C<sub>k</sub></sub> x &nbsp;&nbsp; Inertia = Σ<sub>k</sub> Σ<sub>x∈C<sub>k</sub></sub> d(x, μ<sub>k</sub>) &nbsp;&nbsp; J = Σ<sub>k</sub> Σ<sub>x∈C<sub>k</sub></sub> ‖x − μ<sub>k</sub>‖<sup>2</sup></p>
+<p>DI = <span class="fr"><span>min(inter-cluster dist)</span><span>max(intra-cluster dist)</span></span> &nbsp;&nbsp; KNN: ŷ = mode(y<sub>(1)</sub>, …, y<sub>(k)</sub>) &nbsp; ŷ = <span class="fr"><span>1</span><span>k</span></span>Σ<sub>i=1</sub><sup>k</sup> y<sub>(i)</sub></p>
+<p class="fn"><code>scale(df) <span class="sep">·</span> dist(df, method = "euclidean") <span class="sep">·</span> dist(df, method = "manhattan") <span class="sep">·</span> hclust(dist(df), method = "complete") <span class="sep">·</span> method = "single" · "average" · "centroid" · "ward.D2" <span class="sep">·</span> plot(h) <span class="sep">·</span> rect.hclust(h, k = 3, border = "red") <span class="sep">·</span> rect.hclust(h, h = 200) <span class="sep">·</span> cutree(h, k = 3) <span class="sep">·</span> factoextra::fviz_dend(h, k = 3) <span class="sep">·</span> kmeans(df, centers = 3, nstart = 25) <span class="sep">·</span> factoextra::fviz_cluster(km, data = df) <span class="sep">·</span> class::knn(train, test, cl, k = 3)</code></p>
+<p class="fn"><code>import scipy.cluster.hierarchy as sch <span class="sep">·</span> stats.zscore(data) <span class="sep">·</span> normalize(data) <span class="sep">·</span> StandardScaler().fit_transform(X) <span class="sep">·</span> sch.linkage(data, method='ward') <span class="sep">·</span> sch.dendrogram(sch.linkage(data, method='ward')) <span class="sep">·</span> sch.fcluster(Z, t=3, criterion='maxclust') <span class="sep">·</span> AgglomerativeClustering(n_clusters=5, linkage='ward').fit_predict(data) <span class="sep">·</span> KMeans(init="k-means++", n_clusters=3, n_init=10, max_iter=300, random_state=42).fit(X) <span class="sep">·</span> km.labels_ <span class="sep">·</span> km.cluster_centers_ <span class="sep">·</span> km.inertia_ <span class="sep">·</span> make_blobs(n_samples=200, centers=3, random_state=42) <span class="sep">·</span> train_test_split(X, y, test_size=0.25, random_state=0) <span class="sep">·</span> KNeighborsClassifier(n_neighbors=3).fit(X_train, y_train)</code></p>
+</div>
+
+
+<div class="box"><h2>Text analytics</h2>
+<p>TF = f<sub>t,d</sub> &nbsp;&nbsp; TF = log(1 + f<sub>t,d</sub>) &nbsp;&nbsp; IDF = log<span class="fr"><span>N</span><span>|{d ∈ D : t ∈ d}|</span></span></p>
+<p>TF-IDF = <span class="fr"><span>f<sub>t,d</sub></span><span>log(N / |{d ∈ D : t ∈ d}|)</span></span> &nbsp;&nbsp; TF-IDF = TF(t, d) · IDF(t)</p>
+<p>sparsity = <span class="fr"><span>no. of zeros</span><span>rows × columns</span></span> &nbsp;&nbsp; H = −Σ p<sub>i</sub> log<sub>2</sub> p<sub>i</sub> &nbsp;&nbsp; IG = H(parent) − Σ<sub>j</sub> <span class="fr"><span>n<sub>j</sub></span><span>n</span></span> H(child<sub>j</sub>) &nbsp;&nbsp; Gini = 1 − Σ p<sub>i</sub><sup>2</sup></p>
+<p>cos θ = <span class="fr"><span>A · B</span><span>‖A‖ ‖B‖</span></span></p>
+<p class="fn"><code>tidytext::unnest_tokens(Word, Text) <span class="sep">·</span> anti_join(stop_words, by = c("Word" = "word")) <span class="sep">·</span> count(Word, sort = TRUE) <span class="sep">·</span> bind_tf_idf(Word, Model, n) <span class="sep">·</span> get_sentiments("bing") <span class="sep">·</span> inner_join() <span class="sep">·</span> tm::Corpus(VectorSource(text)) <span class="sep">·</span> tm_map(docs, content_transformer(tolower)) <span class="sep">·</span> tm_map(docs, removePunctuation) <span class="sep">·</span> removeNumbers <span class="sep">·</span> stripWhitespace <span class="sep">·</span> removeWords, stopwords("english") <span class="sep">·</span> stemDocument <span class="sep">·</span> TermDocumentMatrix(docs) <span class="sep">·</span> DocumentTermMatrix(docs) <span class="sep">·</span> wordcloud(words = d$word, freq = d$freq, min.freq = 1, max.words = 200, random.order = FALSE)</code></p>
+<p class="fn"><code>CountVectorizer(stop_words='english').fit_transform(docs) <span class="sep">·</span> TfidfVectorizer().fit_transform(docs) <span class="sep">·</span> .todense() <span class="sep">·</span> .get_feature_names_out() <span class="sep">·</span> nltk.word_tokenize(s) <span class="sep">·</span> stopwords.words('english') <span class="sep">·</span> PorterStemmer().stem(w) <span class="sep">·</span> WordNetLemmatizer().lemmatize(w) <span class="sep">·</span> scipy.sparse.csr_matrix(A) <span class="sep">·</span> DecisionTreeClassifier(criterion='entropy', max_depth=3)</code></p>
+</div>
+
+<div class="box"><h2>Neural networks (NN) · LSTM · LLM</h2>
+<p>z = Σ<sub>i=1</sub><sup>n</sup> w<sub>i</sub>x<sub>i</sub> + bias &nbsp;&nbsp; y = f(x) = 1 if z ≥ 0; 0 if z &lt; 0</p>
+<p>σ(z) = <span class="fr"><span>1</span><span>1 + e<sup>−z</sup></span></span> &nbsp; σ'(z) = σ(z)(1 − σ(z)) &nbsp; tanh(z) = <span class="fr"><span>e<sup>z</sup> − e<sup>−z</sup></span><span>e<sup>z</sup> + e<sup>−z</sup></span></span> &nbsp; ReLU(z) = max(0, z) &nbsp; softmax(z)<sub>i</sub> = <span class="fr"><span>e<sup>z<sub>i</sub></sup></span><span>Σ<sub>j</sub> e<sup>z<sub>j</sub></sup></span></span></p>
+<p>MSE = <span class="fr"><span>1</span><span>2m</span></span> Σ<sub>i=1</sub><sup>m</sup>(Y<sub>i</sub> − Ŷ<sub>i</sub>)<sup>2</sup>, &nbsp; Ŷ<sub>i</sub> = f(x; θ) &nbsp;&nbsp; ℒ(θ) = −Σ<sub>i=0</sub><sup>N</sup> ŷ<sub>i</sub> · log(y<sub>i</sub>) &nbsp;&nbsp; MAPE = <span class="fr"><span>100</span><span>n</span></span> Σ<span class="fr"><span>|y<sub>i</sub> − ŷ<sub>i</sub>|</span><span>|y<sub>i</sub>|</span></span></p>
+<p>BCE = −<span class="fr"><span>1</span><span>n</span></span> Σ[y<sub>i</sub> log ŷ<sub>i</sub> + (1 − y<sub>i</sub>) log(1 − ŷ<sub>i</sub>)] &nbsp;&nbsp; w ← w − η <span class="fr"><span>∂ℒ</span><span>∂w</span></span> &nbsp; b ← b − η <span class="fr"><span>∂ℒ</span><span>∂b</span></span> &nbsp;&nbsp; <span class="fr"><span>∂ℒ</span><span>∂w</span></span> = <span class="fr"><span>∂ℒ</span><span>∂ŷ</span></span> · <span class="fr"><span>∂ŷ</span><span>∂z</span></span> · <span class="fr"><span>∂z</span><span>∂w</span></span></p>
+<p>Dense params = (inputs + 1) × units &nbsp;&nbsp; LSTM params = 4 · u · (u + inputs + 1) &nbsp;&nbsp; steps / epoch = ⌈n / batch_size⌉</p>
+<p>f<sub>t</sub> = σ(W<sub>f</sub>[h<sub>t−1</sub>, x<sub>t</sub>] + b<sub>f</sub>) &nbsp; i<sub>t</sub> = σ(W<sub>i</sub>[h<sub>t−1</sub>, x<sub>t</sub>] + b<sub>i</sub>) &nbsp; C̃<sub>t</sub> = tanh(W<sub>C</sub>[h<sub>t−1</sub>, x<sub>t</sub>] + b<sub>C</sub>)</p>
+<p>C<sub>t</sub> = f<sub>t</sub> ⊙ C<sub>t−1</sub> + i<sub>t</sub> ⊙ C̃<sub>t</sub> &nbsp; o<sub>t</sub> = σ(W<sub>o</sub>[h<sub>t−1</sub>, x<sub>t</sub>] + b<sub>o</sub>) &nbsp; h<sub>t</sub> = o<sub>t</sub> ⊙ tanh(C<sub>t</sub>)</p>
+<p>Attention(Q, K, V) = softmax<span class="fr"><span>QK<sup>T</sup></span><span>√d<sub>k</sub></span></span>V &nbsp;&nbsp; P(w<sub>t</sub> | w<sub>1</sub>, …, w<sub>t−1</sub>) &nbsp;&nbsp; p<sub>i</sub> = <span class="fr"><span>e<sup>z<sub>i</sub>/T</sup></span><span>Σ<sub>j</sub> e<sup>z<sub>j</sub>/T</sup></span></span> &nbsp;&nbsp; PPL = exp(−<span class="fr"><span>1</span><span>N</span></span>Σ log P(w<sub>i</sub> | w<sub>&lt;i</sub>))</p>
+<p class="fn"><code>from tensorflow import keras <span class="sep">·</span> from tensorflow.keras import layers <span class="sep">·</span> keras.Sequential([…]) <span class="sep">·</span> keras.Input(shape=(3,)) <span class="sep">·</span> layers.Dense(4, activation="relu") <span class="sep">·</span> layers.Dense(1, activation="sigmoid") <span class="sep">·</span> layers.Dense(k, activation="softmax") <span class="sep">·</span> layers.LSTM(8, return_sequences=False) <span class="sep">·</span> layers.Dropout(0.2) <span class="sep">·</span> model.compile(optimizer="adam", loss="mse" · "binary_crossentropy" · "categorical_crossentropy", metrics=["accuracy"]) <span class="sep">·</span> model.fit(X, y, epochs=50, batch_size=16, validation_split=0.2) <span class="sep">·</span> model.evaluate(X, y) <span class="sep">·</span> model.predict(X_new) <span class="sep">·</span> model.summary() <span class="sep">·</span> keras.utils.to_categorical(y) <span class="sep">·</span> X.reshape((samples, timesteps, features))</code></p>
+<p class="fn"><code>neuralnet::neuralnet(y ~ x1 + x2, data = d, hidden = c(3, 2), linear.output = FALSE, act.fct = "logistic", err.fct = "ce") <span class="sep">·</span> compute(nn, test) <span class="sep">·</span> predict(nn, test) <span class="sep">·</span> plot(nn) <span class="sep">·</span> keras_model_sequential() <span class="sep">·</span> layer_dense(units = 4, activation = "relu") <span class="sep">·</span> layer_lstm(units = 8) <span class="sep">·</span> compile() <span class="sep">·</span> fit(X, y, epochs = 50)</code></p>
+</div>
+
+
+</div>
+</section>
+
+</body>
+</html>
