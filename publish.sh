@@ -12,11 +12,13 @@ FILT=(--prune-empty-dirs --exclude '*.backup-*' --exclude '*.sync-conflict-*'
   --include '*/' --include '*.html' --include '*.css' --include '*.js'
   --include '*.png' --include '*.jpg' --include '*.jpeg' --include '*.svg' --include '*.webp' --include '*.woff2'
   --exclude '*')
+# notes also keep .md answer files that the lessons link to
+NFILT=("${FILT[@]:0:${#FILT[@]}-2}" --include '*.md' --exclude '*')
 for d in "$TEACH"/*/; do
   c="$(basename "$d")"
   [ -f "$d/index.html" ] || continue
   rsync -a --delete "${FILT[@]}" "$d" "$c/"
-  if [ -d "$NOTES/$c" ]; then rsync -a --delete "${FILT[@]}" "$NOTES/$c/" "notes/$c/"; else rm -rf "notes/$c"; fi
+  if [ -d "$NOTES/$c" ]; then rsync -a --delete "${NFILT[@]}" "$NOTES/$c/" "notes/$c/"; else rm -rf "notes/$c"; fi
 done
 # remove course folders that no longer exist in the source
 for d in */; do
