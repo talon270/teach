@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAC102 · Analysing financial statements</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/lesson.css">
+<!--teach-theme--><style>
+html[data-theme="dark"]{color-scheme:dark;--bg:#16120e;--surface:#211c16;--surface-2:#1a1611;--ink:#eadfc6;--muted:#b1a58d;
+--accent:#ff6a55;--accent-ink:#16120e;--accent-soft:#4a2b23;--term:#0a0907;--term-ink:#eadfc6;--sh:5px 5px 0 #000;--sh-sm:3px 3px 0 #000}
+html[data-theme="dark"] :is(.chip.dark,th,.opt.right){color:#16120e}
+html[data-theme="dark"] body{background:var(--bg);color:var(--ink)}
+html[data-theme="dark"] ::selection{background:#ff6a55;color:#16120e}
+#teach-theme-btn{position:fixed;right:12px;bottom:12px;z-index:99999;font:600 13px/1 system-ui,sans-serif;padding:9px 13px;
+border-radius:999px;border:2px solid #111;background:#fff;color:#111;cursor:pointer;box-shadow:2px 2px 0 #111;opacity:.9}
+#teach-theme-btn:hover,#teach-theme-btn:focus-visible{opacity:1;outline:2px solid #e23a28;outline-offset:2px}
+html[data-theme="dark"] #teach-theme-btn{background:#eadfc6;color:#16120e;border-color:#000;box-shadow:2px 2px 0 #000}
+@media print{#teach-theme-btn{display:none}}
+</style><script>(function(){var d=document.documentElement,K='teach-theme',t=null;try{t=localStorage.getItem(K)}catch(e){}if(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)t='dark';d.setAttribute('data-tmode','tokens');if(t==='dark')d.setAttribute('data-theme','dark');document.addEventListener('DOMContentLoaded',function(){var b=document.createElement('button');b.id='teach-theme-btn';b.type='button';function lab(){var dk=d.getAttribute('data-theme')==='dark';b.textContent=dk?'Light mode':'Dark mode';b.setAttribute('aria-pressed',dk)}b.onclick=function(){var dk=d.getAttribute('data-theme')==='dark';if(dk)d.removeAttribute('data-theme');else d.setAttribute('data-theme','dark');try{localStorage.setItem(K,dk?'light':'dark')}catch(e){}lab()};lab();document.body.appendChild(b)})})();</script><!--/teach-theme--></head>
+<body>
+<main>
+
+<div class="eyebrow"><span class="chip dark">FAC102 · Lesson 15</span><span class="chip">Post-midsem · Analysis</span><span class="chip">≈ 30 min</span></div>
+<h1>Reading the <span class="hero-word">ratios</span></h1>
+<p class="lede">An annual report runs to 300 or 500 pages (sl. 47). Analysis shrinks it into a few numbers that say whether a firm earns well, can pay its bills, and is worth its price.</p>
+<div class="win"><strong>Your win today</strong>Compute and read the deck's ratios, and split ROE into its three DuPont parts.</div>
+
+<h2>1 · Warm-up from lesson 14</h2>
+<div class="recall-item"><p class="q">Indirect method: inventories rose by 1,400 and trade payables fell by 6,700. What do the two do to CFO?</p><textarea aria-label="Your answer"></textarea><div class="answer">Both reduce it: −1,400 (cash went into stock) and −6,700 (cash went to suppliers). Together −8,100.</div></div>
+
+<h2>2 · The desire to grow</h2>
+<p>Sl. 46 gives two firms, 2019 and 2024:</p>
+<div class="table-wrap"><table>
+<thead><tr><th></th><th>A 2019</th><th>A 2024</th><th>B 2019</th><th>B 2024</th></tr></thead>
+<tbody>
+<tr><td>Revenue</td><td>30,000</td><td>80,000</td><td>30,000</td><td>60,000</td></tr>
+<tr><td>COGS</td><td>18,000</td><td>48,000</td><td>18,000</td><td>35,400</td></tr>
+<tr><td>SGA expenses</td><td>3,000</td><td>9,600</td><td>3,000</td><td>6,000</td></tr>
+<tr><td>Depreciation</td><td>6,000</td><td>16,000</td><td>6,000</td><td>12,000</td></tr>
+</tbody></table></div>
+<p>The deck asks: which would you invest in, and why? What do their growth paths say?</p>
+<div class="check" data-answer="6400" data-tol="0">
+  <p class="q">A's operating profit (EBIT) in 2024 = revenue − COGS − SGA − depreciation?</p>
+  <div class="explain">80,000 − 48,000 − 9,600 − 16,000 = 6,400.</div>
+</div>
+<div class="check" data-answer="11" data-tol="0.05">
+  <p class="q">B's EBIT margin in 2024, in %? (B's EBIT = 6,600.)</p>
+  <div class="explain">6,600 / 60,000 = 11%.</div>
+</div>
+<p>Both started at a 10% EBIT margin. A grew revenue 167% but its margin fell to 8%: SGA rose 3.2 times while revenue rose 2.7 times. B grew 100%, kept costs in step, and lifted its margin to 11%. Bigger is not the same as better: growth must be read with margins. (These margins are worked here; the deck leaves the answer open.)</p>
+
+<h2>3 · Where the numbers come from, and four ways to read them</h2>
+<p>Sources beyond the annual report (sl. 49): stock exchanges, business websites and media, credit rating agencies, databases, the government and RBI, social media. Disclosure is driven by regulation, capital, product and managerial labour markets, and litigation, and it lowers the cost of capital (sl. 48).</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Fundamental analysis (sl. 50)</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td>Horizontal</td><td>Year on year change</td></tr>
+<tr><td>Trend</td><td>Several years, each as % of a base year</td></tr>
+<tr><td>Vertical</td><td>One year, each item as % of a base item: common-size statements</td></tr>
+<tr><td>Ratio</td><td>Relations between items</td></tr>
+</tbody></table></div>
+<p>Qualitative data also count: ownership, the board, EVA, CSR, analyst calls.</p>
+
+<h2>4 · The profit ladder</h2>
+<p>Sl. 52: Revenue − COGS = <strong>gross profit</strong>. − operating expenses (SGA, R&amp;D, depreciation and amortisation) = <strong>operating profit (EBIT)</strong>; before depreciation and amortisation it is <strong>EBITDA</strong>. − interest = <strong>PBT</strong>. − taxes = <strong>PAT</strong>.</p>
+<div class="check" data-answer="22400" data-tol="0">
+  <p class="q">Firm A, 2024: EBITDA?</p>
+  <div class="explain">80,000 − 48,000 − 9,600 = 22,400. Subtract depreciation 16,000 to reach EBIT 6,400.</div>
+</div>
+
+<h2>5 · The ratios</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Group</th><th>Ratio</th><th>Formula (deck)</th></tr></thead>
+<tbody>
+<tr><td rowspan="5">Profitability (sl. 53)</td><td>Profit margin, return on sales</td><td>Profit / Sales</td></tr>
+<tr><td>Asset turnover</td><td>Sales / Assets</td></tr>
+<tr><td>ROA, ROI</td><td>Profit / Assets</td></tr>
+<tr><td>ROE</td><td>Profit / Equity</td></tr>
+<tr><td>EPS</td><td>Profit / Number of equity shares</td></tr>
+<tr><td rowspan="2">Liquidity (sl. 54)</td><td>Current ratio</td><td>Current assets / Current liabilities</td></tr>
+<tr><td>Quick ratio</td><td>Quick assets / Current liabilities</td></tr>
+<tr><td rowspan="3">Solvency (sl. 55)</td><td>Debt-to-equity</td><td>Debt / Equity</td></tr>
+<tr><td>Liabilities-to-equity</td><td>Liabilities / Equity</td></tr>
+<tr><td>Interest coverage</td><td>EBIT / Interest expense</td></tr>
+<tr><td rowspan="3">Capital market (sl. 59)</td><td>Price-earnings</td><td>Market price per share / EPS</td></tr>
+<tr><td>Dividend yield</td><td>Dividend per share / Market price per share</td></tr>
+<tr><td>Price-to-book</td><td>Market price per share / Book value per share</td></tr>
+</tbody></table></div>
+<p>"Profit" can be PAT, PBT, EBIT, EBITDA or NOPAT (sl. 53): say which one you use. Quick assets are current assets less inventories (and prepaid expenses).</p>
+<p><strong>DuPont</strong> (sl. 56): ROE = ROA × leverage = <strong>(Profit / Sales) × (Sales / Assets) × (Assets / Equity)</strong>.</p>
+<p>Practice firm (numbers made up for this lesson): sales 50,000; PAT 4,000; total assets 40,000; equity 16,000; debt 15,000; total liabilities 24,000; current assets 12,000 of which inventories 4,000; current liabilities 8,000; EBIT 7,000; interest 1,500; 1,000 shares; price ₹60; dividend ₹1.20 a share.</p>
+<div class="check" data-answer="25" data-tol="0.05">
+  <p class="q">ROE in %?</p>
+  <div class="explain">4,000 / 16,000 = 25%. DuPont: margin 8% × turnover 1.25 × leverage 2.5 = 25%.</div>
+</div>
+<div class="check" data-answer="1" data-tol="0.01">
+  <p class="q">Quick ratio?</p>
+  <div class="explain">(12,000 − 4,000) / 8,000 = 1.0. The current ratio is 12,000 / 8,000 = 1.5.</div>
+</div>
+<div class="check" data-answer="4.67" data-tol="0.01">
+  <p class="q">Interest coverage (two decimals)?</p>
+  <div class="explain">7,000 / 1,500 = 4.67.</div>
+</div>
+<div class="check" data-answer="15" data-tol="0.01">
+  <p class="q">P/E ratio?</p>
+  <div class="explain">EPS = 4,000 / 1,000 = 4. P/E = 60 / 4 = 15. Dividend yield = 1.20 / 60 = 2%; book value per share = 16,000 / 1,000 = 16, so P/B = 60 / 16 = 3.75.</div>
+</div>
+
+<h2>6 · Check yourself</h2>
+<div data-quiz="q15"></div>
+<script type="application/json" id="q15">
+[
+ {
+  "stem": "Each item as a % of sales for one year. Which analysis?",
+  "options": [
+   "Horizontal",
+   "Trend",
+   "Ratio",
+   "Vertical (common size)"
+  ],
+  "answer": 3,
+  "why": "Sl. 50: single year as % of a base item."
+ },
+ {
+  "stem": "Five years of revenue, each as a % of the first year. Which analysis?",
+  "options": [
+   "Horizontal",
+   "Vertical",
+   "DuPont",
+   "Trend"
+  ],
+  "answer": 3,
+  "why": "Sl. 50: multi-year as % of base year."
+ },
+ {
+  "stem": "Revenue − COGS =",
+  "options": [
+   "PBT",
+   "Gross profit",
+   "EBITDA",
+   "EBIT"
+  ],
+  "answer": 1,
+  "why": "Sl. 52, the first step of the ladder."
+ },
+ {
+  "stem": "DuPont splits ROE into…",
+  "options": [
+   "Current ratio × quick ratio",
+   "Profit margin × asset turnover × leverage",
+   "ROA × EPS",
+   "P/E × dividend yield"
+  ],
+  "answer": 1,
+  "why": "Sl. 56: (Profit/Sales) × (Sales/Assets) × (Assets/Equity)."
+ },
+ {
+  "stem": "Two firms have the same ROA. Firm X has more debt. Its ROE is…",
+  "options": [
+   "The same",
+   "Lower",
+   "Zero",
+   "Higher"
+  ],
+  "answer": 3,
+  "why": "ROE = ROA × Assets/Equity; more debt means less equity per rupee of assets, so higher leverage."
+ },
+ {
+  "stem": "Interest coverage =",
+  "options": [
+   "EBIT / Interest expense",
+   "PAT / Interest",
+   "Current assets / Current liabilities",
+   "Debt / Equity"
+  ],
+  "answer": 0,
+  "why": "Sl. 55."
+ },
+ {
+  "stem": "Which ratio tests liquidity?",
+  "options": [
+   "Price-to-book",
+   "Quick ratio",
+   "Asset turnover",
+   "Debt-to-equity"
+  ],
+  "answer": 1,
+  "why": "Sl. 54: current and quick ratios."
+ },
+ {
+  "stem": "Firm A grew revenue faster than B but its EBIT margin fell from 10% to 8%. The lesson of sl. 46?",
+  "options": [
+   "Margins do not matter",
+   "Faster growth is always better",
+   "Growth must be read with margins",
+   "Depreciation explains everything"
+  ],
+  "answer": 2,
+  "why": "A's costs grew faster than its revenue; B grew slower but more profitably."
+ }
+]
+</script>
+
+<div class="source"><strong>Primary source.</strong> <a href="../../notes/FAC102/FAC1005_102_CJ2026_Post%20midsem.pptx">Post-midsem deck, 59-slide version of 19 Nov</a>, sl. 45–59. The margins in section 2 and the practice firm in section 5 were made for this lesson; sl. 57–58 (HUL and ITC segment charts) are examples only.<br><strong>Practice.</strong> Compute these ratios for your project company. The full drill has no analysis round yet.</div>
+
+<div class="ask"><strong>Stuck or curious?</strong> Ask me in the chat. Tell me your quiz score and which questions you missed, so the next lesson fits you.</div>
+
+<div class="nav"><a href="0014-cash-flow-statement.html">← Lesson 14 · The cash flow statement</a><a href="../index.html">Course map</a><span></span></div>
+</main>
+<script src="../assets/kit.js"></script>
+</body>
+</html>
