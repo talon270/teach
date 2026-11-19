@@ -150,8 +150,15 @@ tr[hidden] { display: none }
 @media print { .w.red { color: #000 } .w.red .lab { color: #444 } .kw div { background: #fff !important; border: 1px solid #bbb } .kw b { color: #b00 !important } }
 .tag { font: 700 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted) }
 </style>
-</head>
-<body>
+<!--teach-nav--><style>
+.teach-nav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;margin:0;font:600 13px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;position:static;background:transparent;border:0}
+.teach-nav a{all:unset;display:inline-block;padding:7px 12px;min-height:16px;border-radius:999px;border:2px solid #111;background:#fff;color:#111;
+box-shadow:2px 2px 0 #111;cursor:pointer;text-decoration:none;font:inherit;white-space:nowrap}
+.teach-nav a:hover{background:#ffd9cf}
+.teach-nav a:focus-visible{outline:2px solid #e23a28;outline-offset:2px}
+@media print{.teach-nav{display:none}}
+</style><script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-teach-back]');if(!a)return;var r=document.referrer;try{if(r&&new URL(r).origin===location.origin&&history.length>1){e.preventDefault();history.back()}}catch(x){}});</script><!--/teach-nav--></head>
+<body><!--teach-nav--><div class="teach-nav" role="navigation" aria-label="Site, top"><a href="../../INT301/index.html" data-teach-back>&larr; Back</a><a href="../../INT301/index.html">INT301 course map</a><a href="../../index.html">All courses</a></div><!--/teach-nav-->
 <div class="wrap">
 <div class="status"><span class="rec">INT301 · Weeks 8–9</span><span>Monsoon 2026 · 3 readings</span></div>
 
@@ -687,5 +694,5 @@ document.querySelectorAll(".tools[data-for]").forEach(tools => {
   q.oninput = apply; apply();
 });
 </script>
-</body>
+<!--teach-nav--><div class="teach-nav" role="navigation" aria-label="Site, bottom"><a href="../../INT301/index.html" data-teach-back>&larr; Back</a><a href="../../INT301/index.html">INT301 course map</a><a href="../../index.html">All courses</a></div><!--/teach-nav--></body>
 </html>

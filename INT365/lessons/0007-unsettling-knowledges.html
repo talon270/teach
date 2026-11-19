@@ -377,10 +377,18 @@ html[data-theme="dark"] ::selection{background:#ff6a55;color:#16120e}
 #teach-theme-btn{position:fixed;right:12px;bottom:12px;z-index:99999;font:600 13px/1 system-ui,sans-serif;padding:9px 13px;
 border-radius:999px;border:2px solid #111;background:#fff;color:#111;cursor:pointer;box-shadow:2px 2px 0 #111;opacity:.9}
 #teach-theme-btn:hover,#teach-theme-btn:focus-visible{opacity:1;outline:2px solid #e23a28;outline-offset:2px}
+html[data-theme="dark"] .teach-nav a{background:#eadfc6;color:#16120e;border-color:#000;box-shadow:2px 2px 0 #000}
 html[data-theme="dark"] #teach-theme-btn{background:#eadfc6;color:#16120e;border-color:#000;box-shadow:2px 2px 0 #000}
 @media print{#teach-theme-btn{display:none}}
-</style><script>(function(){var d=document.documentElement,K='teach-theme',t=null;try{t=localStorage.getItem(K)}catch(e){}if(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)t='dark';d.setAttribute('data-tmode','tokens');if(t==='dark')d.setAttribute('data-theme','dark');document.addEventListener('DOMContentLoaded',function(){var b=document.createElement('button');b.id='teach-theme-btn';b.type='button';function lab(){var dk=d.getAttribute('data-theme')==='dark';b.textContent=dk?'Light mode':'Dark mode';b.setAttribute('aria-pressed',dk)}b.onclick=function(){var dk=d.getAttribute('data-theme')==='dark';if(dk)d.removeAttribute('data-theme');else d.setAttribute('data-theme','dark');try{localStorage.setItem(K,dk?'light':'dark')}catch(e){}lab()};lab();document.body.appendChild(b)})})();</script><!--/teach-theme--></head>
-<body>
+</style><script>(function(){var d=document.documentElement,K='teach-theme',t=null;try{t=localStorage.getItem(K)}catch(e){}if(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)t='dark';d.setAttribute('data-tmode','tokens');if(t==='dark')d.setAttribute('data-theme','dark');document.addEventListener('DOMContentLoaded',function(){var b=document.createElement('button');b.id='teach-theme-btn';b.type='button';function lab(){var dk=d.getAttribute('data-theme')==='dark';b.textContent=dk?'Light mode':'Dark mode';b.setAttribute('aria-pressed',dk)}b.onclick=function(){var dk=d.getAttribute('data-theme')==='dark';if(dk)d.removeAttribute('data-theme');else d.setAttribute('data-theme','dark');try{localStorage.setItem(K,dk?'light':'dark')}catch(e){}lab()};lab();document.body.appendChild(b)})})();</script><!--/teach-theme--><!--teach-nav--><style>
+.teach-nav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;margin:0;font:600 13px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;position:static;background:transparent;border:0}
+.teach-nav a{all:unset;display:inline-block;padding:7px 12px;min-height:16px;border-radius:999px;border:2px solid #111;background:#fff;color:#111;
+box-shadow:2px 2px 0 #111;cursor:pointer;text-decoration:none;font:inherit;white-space:nowrap}
+.teach-nav a:hover{background:#ffd9cf}
+.teach-nav a:focus-visible{outline:2px solid #e23a28;outline-offset:2px}
+@media print{.teach-nav{display:none}}
+</style><script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-teach-back]');if(!a)return;var r=document.referrer;try{if(r&&new URL(r).origin===location.origin&&history.length>1){e.preventDefault();history.back()}}catch(x){}});</script><!--/teach-nav--></head>
+<body><!--teach-nav--><div class="teach-nav" role="navigation" aria-label="Site, top"><a href="../../INT365/index.html" data-teach-back>&larr; Back</a><a href="../../INT365/index.html">INT365 course map</a><a href="../../index.html">All courses</a></div><!--/teach-nav-->
 <main>
 
 <div class="eyebrow"><span class="chip dark">INT365 · Lesson 7</span><span class="chip">Week 3 · Querejazu &amp; Tickner</span><span class="chip">≈ 25 min</span></div>
@@ -716,5 +724,5 @@ html[data-theme="dark"] #teach-theme-btn{background:#eadfc6;color:#16120e;border
 })();
 
 </script>
-</body>
+<!--teach-nav--><div class="teach-nav" role="navigation" aria-label="Site, bottom"><a href="../../INT365/index.html" data-teach-back>&larr; Back</a><a href="../../INT365/index.html">INT365 course map</a><a href="../../index.html">All courses</a></div><!--/teach-nav--></body>
 </html>

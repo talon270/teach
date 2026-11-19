@@ -261,8 +261,15 @@ mark { background: transparent; color: var(--ink); padding: 0; text-decoration: 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important } }
 
 </style>
-</head>
-<body>
+<!--teach-nav--><style>
+.teach-nav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;margin:0;font:600 13px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;position:static;background:transparent;border:0}
+.teach-nav a{all:unset;display:inline-block;padding:7px 12px;min-height:16px;border-radius:999px;border:2px solid #111;background:#fff;color:#111;
+box-shadow:2px 2px 0 #111;cursor:pointer;text-decoration:none;font:inherit;white-space:nowrap}
+.teach-nav a:hover{background:#ffd9cf}
+.teach-nav a:focus-visible{outline:2px solid #e23a28;outline-offset:2px}
+@media print{.teach-nav{display:none}}
+</style><script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-teach-back]');if(!a)return;var r=document.referrer;try{if(r&&new URL(r).origin===location.origin&&history.length>1){e.preventDefault();history.back()}}catch(x){}});</script><!--/teach-nav--></head>
+<body><!--teach-nav--><div class="teach-nav" role="navigation" aria-label="Site, top"><a href="../../FAC102/index.html" data-teach-back>&larr; Back</a><a href="../../FAC102/index.html">FAC102 course map</a><a href="../../index.html">All courses</a></div><!--/teach-nav-->
 <div class="wrap">
   <header>
     <div>
@@ -555,5 +562,5 @@ const start = (location.hash || "").slice(1);
 go(VIEWS.some(v => v.id === start) ? start : "plan");
 window.addEventListener("hashchange", () => { const h = location.hash.slice(1); if (h !== current && VIEWS.some(v => v.id === h)) go(h); });
 </script>
-</body>
+<!--teach-nav--><div class="teach-nav" role="navigation" aria-label="Site, bottom"><a href="../../FAC102/index.html" data-teach-back>&larr; Back</a><a href="../../FAC102/index.html">FAC102 course map</a><a href="../../index.html">All courses</a></div><!--/teach-nav--></body>
 </html>

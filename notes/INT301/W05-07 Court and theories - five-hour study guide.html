@@ -109,8 +109,15 @@ footer a{color:var(--paper)}
 @media(max-width:420px){.shell{width:calc(100% - 24px)}body{font-size:14px}h1{font-size:clamp(2.4rem,12vw,4.4rem)}.timeline b{font-size:15px}.timeline span{font-size:11px}}
 @media print{.top,.print{display:none}body{background:white;color:black}.card{box-shadow:none}section{break-inside:avoid}.quiz details p{display:block}a{text-decoration:none}}
 </style>
-</head>
-<body>
+<!--teach-nav--><style>
+.teach-nav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;margin:0;font:600 13px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;position:static;background:transparent;border:0}
+.teach-nav a{all:unset;display:inline-block;padding:7px 12px;min-height:16px;border-radius:999px;border:2px solid #111;background:#fff;color:#111;
+box-shadow:2px 2px 0 #111;cursor:pointer;text-decoration:none;font:inherit;white-space:nowrap}
+.teach-nav a:hover{background:#ffd9cf}
+.teach-nav a:focus-visible{outline:2px solid #e23a28;outline-offset:2px}
+@media print{.teach-nav{display:none}}
+</style><script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-teach-back]');if(!a)return;var r=document.referrer;try{if(r&&new URL(r).origin===location.origin&&history.length>1){e.preventDefault();history.back()}}catch(x){}});</script><!--/teach-nav--></head>
+<body><!--teach-nav--><div class="teach-nav" role="navigation" aria-label="Site, top"><a href="../../INT301/index.html" data-teach-back>&larr; Back</a><a href="../../INT301/index.html">INT301 course map</a><a href="../../index.html">All courses</a></div><!--/teach-nav-->
 <div class="top"><div class="shell"><a class="brand" href="#top"><b>■</b> INT301 / W05–07</a><nav aria-label="Sections"><a href="#route">ROUTE</a><a href="#court">COURT</a><a href="#theory">THEORY</a><a href="#critique">CRITIQUE</a><a href="#compare">COMPARE</a><a href="#write">WRITE</a><a href="#test">TEST</a></nav></div></div>
 <header id="top"><div class="shell">
 <div class="eyebrow"><span>INT301 · INTERNATIONAL LAW AND WORLD POLITICS</span><span>WEEKS 05—07</span><span>FIVE-HOUR MODE</span></div>
@@ -344,5 +351,5 @@ function filterLedger(){
   document.querySelectorAll('#ledger tbody tr').forEach(row=>{row.hidden=!row.textContent.toLowerCase().includes(term)});
 }
 </script>
-</body>
+<!--teach-nav--><div class="teach-nav" role="navigation" aria-label="Site, bottom"><a href="../../INT301/index.html" data-teach-back>&larr; Back</a><a href="../../INT301/index.html">INT301 course map</a><a href="../../index.html">All courses</a></div><!--/teach-nav--></body>
 </html>

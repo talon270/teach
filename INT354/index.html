@@ -391,16 +391,24 @@ html[data-theme="dark"] ::selection{background:#ff6a55;color:#16120e}
 #teach-theme-btn{position:fixed;right:12px;bottom:12px;z-index:99999;font:600 13px/1 system-ui,sans-serif;padding:9px 13px;
 border-radius:999px;border:2px solid #111;background:#fff;color:#111;cursor:pointer;box-shadow:2px 2px 0 #111;opacity:.9}
 #teach-theme-btn:hover,#teach-theme-btn:focus-visible{opacity:1;outline:2px solid #e23a28;outline-offset:2px}
+html[data-theme="dark"] .teach-nav a{background:#eadfc6;color:#16120e;border-color:#000;box-shadow:2px 2px 0 #000}
 html[data-theme="dark"] #teach-theme-btn{background:#eadfc6;color:#16120e;border-color:#000;box-shadow:2px 2px 0 #000}
 @media print{#teach-theme-btn{display:none}}
-</style><script>(function(){var d=document.documentElement,K='teach-theme',t=null;try{t=localStorage.getItem(K)}catch(e){}if(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)t='dark';d.setAttribute('data-tmode','tokens');if(t==='dark')d.setAttribute('data-theme','dark');document.addEventListener('DOMContentLoaded',function(){var b=document.createElement('button');b.id='teach-theme-btn';b.type='button';function lab(){var dk=d.getAttribute('data-theme')==='dark';b.textContent=dk?'Light mode':'Dark mode';b.setAttribute('aria-pressed',dk)}b.onclick=function(){var dk=d.getAttribute('data-theme')==='dark';if(dk)d.removeAttribute('data-theme');else d.setAttribute('data-theme','dark');try{localStorage.setItem(K,dk?'light':'dark')}catch(e){}lab()};lab();document.body.appendChild(b)})})();</script><!--/teach-theme--></head>
-<body>
+</style><script>(function(){var d=document.documentElement,K='teach-theme',t=null;try{t=localStorage.getItem(K)}catch(e){}if(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)t='dark';d.setAttribute('data-tmode','tokens');if(t==='dark')d.setAttribute('data-theme','dark');document.addEventListener('DOMContentLoaded',function(){var b=document.createElement('button');b.id='teach-theme-btn';b.type='button';function lab(){var dk=d.getAttribute('data-theme')==='dark';b.textContent=dk?'Light mode':'Dark mode';b.setAttribute('aria-pressed',dk)}b.onclick=function(){var dk=d.getAttribute('data-theme')==='dark';if(dk)d.removeAttribute('data-theme');else d.setAttribute('data-theme','dark');try{localStorage.setItem(K,dk?'light':'dark')}catch(e){}lab()};lab();document.body.appendChild(b)})})();</script><!--/teach-theme--><!--teach-nav--><style>
+.teach-nav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;margin:0;font:600 13px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;position:static;background:transparent;border:0}
+.teach-nav a{all:unset;display:inline-block;padding:7px 12px;min-height:16px;border-radius:999px;border:2px solid #111;background:#fff;color:#111;
+box-shadow:2px 2px 0 #111;cursor:pointer;text-decoration:none;font:inherit;white-space:nowrap}
+.teach-nav a:hover{background:#ffd9cf}
+.teach-nav a:focus-visible{outline:2px solid #e23a28;outline-offset:2px}
+@media print{.teach-nav{display:none}}
+</style><script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-teach-back]');if(!a)return;var r=document.referrer;try{if(r&&new URL(r).origin===location.origin&&history.length>1){e.preventDefault();history.back()}}catch(x){}});</script><!--/teach-nav--></head>
+<body><!--teach-nav--><div class="teach-nav" role="navigation" aria-label="Site, top"><a href="../index.html" data-teach-back>&larr; Back</a><a href="../index.html">All courses</a><a href="../plan.html">Day plan</a></div><!--/teach-nav-->
 <main>
 <div class="eyebrow"><span class="chip dark">INT354</span><span class="chip">End-sem · date TBC</span><span class="chip">40% of grade</span></div>
 <h1>Course <span class="hero-word">map</span></h1>
 <p class="lede">Eleven short lessons that assume you know nothing about nuclear history or strategy. They follow the course in order: order vs justice, the first attempts at control, the bomb's victims, Atoms for Peace, the atomic everyday, then strategy, proliferation, the taboo, disarmament and feminist critiques. Each lesson asks the course's three questions: whose order, which actors, what counts as "nuclear".</p>
 <div class="score-bar"><span>Done</span><div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="12" aria-label="Lessons done"><i id="fill"></i></div><span class="count" id="count">0 / 12</span></div>
-<p>The dates for each lesson are in the <a href="../index.html">shared day plan</a>.</p>
+<p>The dates for each lesson are in the <a href="../plan.html">shared day plan</a>.</p>
 <h2>Lessons</h2>
 <div class="wk"><ul class="plan">
   <li><label><input type="checkbox" data-k="0001"><span class="day">01</span><span class="what"><a href="lessons/0001-order-versus-justice.html">Order versus justice</a><br><small>Bull's minimum order and three kinds of justice; the 1967 Waltz panel on force checking force.</small></span></label></li>
@@ -441,5 +449,5 @@ html[data-theme="dark"] #teach-theme-btn{background:#eadfc6;color:#16120e;border
   render();
 })();
 </script>
-</body>
+<!--teach-nav--><div class="teach-nav" role="navigation" aria-label="Site, bottom"><a href="../index.html" data-teach-back>&larr; Back</a><a href="../index.html">All courses</a><a href="../plan.html">Day plan</a></div><!--/teach-nav--></body>
 </html>

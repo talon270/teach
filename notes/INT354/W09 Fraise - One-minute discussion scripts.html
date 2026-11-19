@@ -12,8 +12,15 @@
     @media(max-width:400px){.top .wrap{align-items:flex-start;flex-direction:column;padding:8px 0}.toplinks{width:100%;justify-content:space-between}.pair{scroll-margin-top:100px}}
     @media print{body{background:white;color:#111}.top,.controls{display:none}.hero{padding:10px 0 16px}h1{font-size:2.5rem}.dek,.toolbar p,.footer{color:#333}.note,.pair{background:white;color:#111;border-color:#999;break-inside:avoid}.speech{border-color:#999}.counter details .script{display:block!important;color:#111}.counter summary{display:none}.pair-foot{background:#eee;color:#333;border-color:#999}.speech .script{color:#111}.speech h3,.counter h3,.eyebrow,h1 em{color:#8a3b0a}.closing{background:#eee}.pair-body{grid-template-columns:1fr 1fr}}
   </style>
-</head>
-<body>
+<!--teach-nav--><style>
+.teach-nav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;margin:0;font:600 13px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;position:static;background:transparent;border:0}
+.teach-nav a{all:unset;display:inline-block;padding:7px 12px;min-height:16px;border-radius:999px;border:2px solid #111;background:#fff;color:#111;
+box-shadow:2px 2px 0 #111;cursor:pointer;text-decoration:none;font:inherit;white-space:nowrap}
+.teach-nav a:hover{background:#ffd9cf}
+.teach-nav a:focus-visible{outline:2px solid #e23a28;outline-offset:2px}
+@media print{.teach-nav{display:none}}
+</style><script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-teach-back]');if(!a)return;var r=document.referrer;try{if(r&&new URL(r).origin===location.origin&&history.length>1){e.preventDefault();history.back()}}catch(x){}});</script><!--/teach-nav--></head>
+<body><!--teach-nav--><div class="teach-nav" role="navigation" aria-label="Site, top"><a href="../../INT354/index.html" data-teach-back>&larr; Back</a><a href="../../INT354/index.html">INT354 course map</a><a href="../../index.html">All courses</a></div><!--/teach-nav-->
   <header class="top"><div class="wrap"><a class="brand" href="#top">INT<span>354</span> / WEEK 09</a><nav class="toplinks" aria-label="Quick links"><a href="#scripts">Scripts</a><a href="#closing">Closing line</a><a href="W09%20Fraise%20-%20The%20Magicians%20of%20Nuclear%20Strategy.html">Full guide</a></nav></div></header>
   <main id="top" class="wrap">
     <section class="hero" aria-labelledby="title"><div class="eyebrow">Seminar field notes · Thomas Fraise</div><h1 id="title">One-minute <em>arguments</em> &amp; rebuttals</h1><p class="dek">Six ready-to-say contributions on “The Magicians of Nuclear Strategy.” Each left-hand script makes a point; its right-hand rebuttal takes the strongest plausible opposing view. You can take either side.</p><div class="instructions"><div class="note"><span class="eyebrow">How to use this</span><p>Choose <strong>two or three</strong> pairs, not all six. Read the argument aloud, then reveal the rebuttal and practice answering it. The scripts are roughly one minute each at a steady seminar pace. Page references point to Fraise’s PDF.</p></div><div class="note"><span class="eyebrow">Voice key</span><p>These are <strong>discussion positions</strong>, written for speaking, not quotations from Fraise. His claims and evidence are identified inside each script; the challenges and course connections are our interpretations.</p></div></div></section>
@@ -44,5 +51,5 @@
     });
     window.addEventListener('afterprint', () => rebuttals.forEach((item, index) => { item.open = printState[index]; }));
   </script>
-</body>
+<!--teach-nav--><div class="teach-nav" role="navigation" aria-label="Site, bottom"><a href="../../INT354/index.html" data-teach-back>&larr; Back</a><a href="../../INT354/index.html">INT354 course map</a><a href="../../index.html">All courses</a></div><!--/teach-nav--></body>
 </html>
