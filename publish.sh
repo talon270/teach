@@ -32,4 +32,5 @@ git add -A
 if git diff --cached --quiet; then echo "Nothing to publish."; exit 0; fi
 git commit -q -m "Update teach pages $(date +%F-%H%M)"
 git push -q origin HEAD:main
-echo "Pushed. Live in about a minute: https://talon270.github.io/teach/"
+vercel deploy --prod --yes >/dev/null
+echo "Pushed and deployed: https://teach-three-blond.vercel.app/"

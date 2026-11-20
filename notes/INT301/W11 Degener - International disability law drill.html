@@ -254,7 +254,48 @@ box-shadow:2px 2px 0 #111;cursor:pointer;text-decoration:none;font:inherit;white
 .teach-nav a:hover{background:#ffd9cf}
 .teach-nav a:focus-visible{outline:2px solid #e23a28;outline-offset:2px}
 @media print{.teach-nav{display:none}}
-</style><script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-teach-back]');if(!a)return;var r=document.referrer;try{if(r&&new URL(r).origin===location.origin&&history.length>1){e.preventDefault();history.back()}}catch(x){}});</script><!--/teach-nav--></head>
+</style><script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-teach-back]');if(!a)return;var r=document.referrer;try{if(r&&new URL(r).origin===location.origin&&history.length>1){e.preventDefault();history.back()}}catch(x){}});</script><script>(function(){"use strict";
+var K="teach-track-v1",P="notes/INT301/W11 Degener - International disability law drill.html";
+function rd(){try{var s=JSON.parse(localStorage.getItem(K)||"{}");return s&&typeof s==="object"?s:{}}catch(e){return{}}}
+function wr(s){try{localStorage.setItem(K,JSON.stringify(s));return true}catch(e){return false}}
+function pad(x){return String(x).padStart(2,"0")}
+function day(t){t=t||new Date();return t.getFullYear()+"-"+pad(t.getMonth()+1)+"-"+pad(t.getDate())}
+function upd(fn){var s=rd();s.v=1;s.pages=s.pages||{};s.days=s.days||{};var pg=s.pages[P]=s.pages[P]||{visits:0,secs:0};fn(s,pg);wr(s)}
+function quizDays(pages,p){return((pages[p]||{}).quiz||[]).map(function(a){return a.d})}
+function auto(plan){
+  var T=rd(),st={};try{st=JSON.parse(localStorage.getItem(plan.key)||"{}")||{}}catch(e){st={}}
+  var pages=T.pages||{},days=T.days||{},done=T.auto||{},changed=false;
+  function ok(a,date){
+    if(a.lessons)return a.lessons.length>0&&a.lessons.every(function(p){return quizDays(pages,p).some(function(d){return!a.since||d>=date})});
+    if(a.course){
+      var lp=a.course+"/lessons/",np="notes/"+a.course+"/",p,d,q,s;
+      for(p in pages)if(p.indexOf(lp)===0&&quizDays(pages,p).some(function(d){return d>=date}))return true;
+      for(d in days)if(d>=date){s=0;for(q in(days[d].pages||{}))if(q.indexOf(np)===0)s+=days[d].pages[q];if(s>=300)return true}
+    }
+    return false}
+  plan.days.forEach(function(D){D.items.forEach(function(it){
+    if(it.auto&&!(it.k in st)&&ok(it.auto,D.date)){st[it.k]=true;done[it.k]=1;changed=true}})});
+  if(changed){try{localStorage.setItem(plan.key,JSON.stringify(st))}catch(e){}T.auto=done;wr(T)}
+  return done}
+window.teachTrack={key:K,read:rd,write:wr,day:day,auto:auto};
+if(!P)return;
+upd(function(s,pg){var n=Date.now();pg.visits++;pg.first=pg.first||n;pg.last=n});
+var seen=Date.now(),last=Date.now();
+["pointerdown","keydown","scroll","wheel","touchstart","input"].forEach(function(e){addEventListener(e,function(){seen=Date.now()},{passive:true,capture:true})});
+setInterval(function(){var n=Date.now(),dt=Math.min(n-last,20000);last=n;
+  if(document.visibilityState!=="visible"||n-seen>180000)return;
+  var sec=Math.round(dt/1000);
+  upd(function(s,pg){var d=day(),D=s.days[d]=s.days[d]||{secs:0,pages:{}};pg.secs+=sec;D.secs+=sec;D.pages[P]=(D.pages[P]||0)+sec})},15000);
+var finished=false;
+document.addEventListener("click",function(e){
+  if(finished||!(e.target.closest&&e.target.closest("[data-quiz] .opt")))return;
+  setTimeout(function(){
+    var qs=[].slice.call(document.querySelectorAll("[data-quiz] .quiz-q"));
+    if(!qs.length||qs.some(function(q){return!q.querySelector(".opt:disabled")}))return;
+    finished=true;
+    var wrong=qs.filter(function(q){return q.querySelector(".opt.wrong")}).length;
+    upd(function(s,pg){pg.quiz=(pg.quiz||[]).concat([{t:Date.now(),d:day(),r:qs.length-wrong,n:qs.length}]).slice(-20)})},0)});
+})();</script><!--/teach-nav--></head>
 <body><!--teach-nav--><div class="teach-nav" role="navigation" aria-label="Site, top"><a href="../../INT301/index.html" data-teach-back>&larr; Back</a><a href="../../INT301/index.html">INT301 course map</a><a href="../../index.html">All courses</a></div><!--/teach-nav-->
 <div class="wrap">
   <header>

@@ -1,2 +1,4 @@
 *.backup-*
 *.sync-conflict-*
+.vercel
+.env*

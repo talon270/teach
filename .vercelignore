@@ -1,0 +1,7 @@
+*.backup-*
+*.sync-conflict-*
+build.py
+publish.sh
+__pycache__
+README.md
+.nojekyll
