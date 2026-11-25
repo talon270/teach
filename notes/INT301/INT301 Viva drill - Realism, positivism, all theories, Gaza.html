@@ -271,7 +271,17 @@ mark { background: var(--accent-soft); color: var(--ink); padding: 0 .15em; box-
 @media (max-width: 480px) { .slot { grid-template-columns: 58px minmax(0, 1fr) } .slot > :last-child:not(:only-child) { grid-column: 2 } }
 </style>
 <style id="graphite">
-/* Graphite override for the cream neobrutalist drill skin. Injected before <!--teach-nav--><style>
+/* Graphite override for the cream neobrutalist drill skin. Injected at the end of the head element of one page; the shared head.part is unchanged. */
+:root {
+  --bg: #1b1d20; --surface: #25282c; --surface-2: #2d3136; --ink: #e8eaed; --muted: #a8aeb6;
+  --line: #5d646d; --shadow: #09090a; --accent: #8fb8de; --accent-ink: #101214; --accent-soft: #2b3a49;
+  --hl: #8fb8de; --good: #e8eaed; --good-bg: #25282c; --bad: #ff9a8a; --bad-bg: #3a2825;
+  --term: #0e0f10; --term-ink: #d6dade; --scrim: rgba(0, 0, 0, .72); --dialog: #2d3136;
+  color-scheme: dark;
+}
+textarea { box-shadow: inset 3px 3px 0 rgba(0, 0, 0, .35) }
+</style>
+<!--teach-nav--><style>
 .teach-nav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;margin:0;font:600 13px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;position:static;background:transparent;border:0}
 .teach-nav a{all:unset;display:inline-block;padding:7px 12px;min-height:16px;border-radius:999px;border:2px solid #111;background:#fff;color:#111;
 box-shadow:2px 2px 0 #111;cursor:pointer;text-decoration:none;font:inherit;white-space:nowrap}
@@ -319,17 +329,7 @@ document.addEventListener("click",function(e){
     finished=true;
     var wrong=qs.filter(function(q){return q.querySelector(".opt.wrong")}).length;
     upd(function(s,pg){pg.quiz=(pg.quiz||[]).concat([{t:Date.now(),d:day(),r:qs.length-wrong,n:qs.length}]).slice(-20)})},0)});
-})();</script><!--/teach-nav--></head> of one page; the shared head.part is unchanged. */
-:root {
-  --bg: #1b1d20; --surface: #25282c; --surface-2: #2d3136; --ink: #e8eaed; --muted: #a8aeb6;
-  --line: #5d646d; --shadow: #09090a; --accent: #8fb8de; --accent-ink: #101214; --accent-soft: #2b3a49;
-  --hl: #8fb8de; --good: #e8eaed; --good-bg: #25282c; --bad: #ff9a8a; --bad-bg: #3a2825;
-  --term: #0e0f10; --term-ink: #d6dade; --scrim: rgba(0, 0, 0, .72); --dialog: #2d3136;
-  color-scheme: dark;
-}
-textarea { box-shadow: inset 3px 3px 0 rgba(0, 0, 0, .35) }
-</style>
-</head>
+})();</script><!--/teach-nav--></head>
 <body><!--teach-nav--><div class="teach-nav" role="navigation" aria-label="Site, top"><a href="../../INT301/index.html" data-teach-back>&larr; Back</a><a href="../../INT301/index.html">INT301 course map</a><a href="../../index.html">All courses</a></div><!--/teach-nav-->
 <div class="wrap">
   <header>
